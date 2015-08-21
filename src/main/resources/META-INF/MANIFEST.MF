@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: com.tifsoft.mavenbuildbuddy.MBB
+SplashScreen-Image: sbcc_splash_screen.png
