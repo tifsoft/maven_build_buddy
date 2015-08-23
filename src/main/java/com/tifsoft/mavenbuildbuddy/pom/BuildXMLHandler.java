@@ -5,6 +5,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildXMLHandler extends BuildXMLHandlerBase {
@@ -32,7 +33,7 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 					break;
 				case MODULE:
 					//System.out.println("Module: " + string);
-					this.currentBuildProfile.moduleList.add(string);
+					this.currentBuildProfile.moduleList.put(string, new BuildModule(string, null));
 					this.type = null;
 					break;
 				default:

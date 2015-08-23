@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
+import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildPOMContentsLister {
@@ -19,8 +20,8 @@ public class BuildPOMContentsLister {
 		//LOGGER.info("List size: " + profileList.size());
 		for (BuildProfile buildProfile : profileList) {
 			LOG.info("Profile: " + buildProfile.profile);
-			for (String module : buildProfile.moduleList) {
-				LOG.info("Module: " + module);				
+			for (BuildModule module : buildProfile.moduleList.values()) {
+				LOG.info("Module: " + module.getName());				
 			}			
 		}
 	}

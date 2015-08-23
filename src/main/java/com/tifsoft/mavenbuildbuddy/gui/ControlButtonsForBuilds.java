@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
+import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.pom.BuildPOMContentsLister;
 import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
@@ -52,29 +53,29 @@ public class ControlButtonsForBuilds {
 				labelProfile.setForeground(Color.white);
 				buildArray.add(labelProfile, con);
 				
-				for (final String module : buildProfile.moduleList) {
+				for (final BuildModule module : buildProfile.moduleList.values()) {
 					con.gridy++;
 					con.gridx = 0;
 					con.anchor = GridBagConstraints.LINE_START;
 					con.gridwidth = 1;
 					con.ipady = 0;
-					String processedModule = module;
-					if (module.contains("/")) {
-						int i = module.indexOf('/');
-						processedModule = module.substring(i + 1);
+					String processedModule = module.getName();
+					if (module.getName().contains("/")) {
+						int i = module.getName().indexOf('/');
+						processedModule = module.getName().substring(i + 1);
 					}
 					JLabel labelModule = new JLabel(processedModule,SwingConstants.LEFT);
 					buildArray.add(labelModule, con);
 					con.gridx++;
-					addBuildLifecycleButton(buildArray, con, profile, module, "Clean", "clean");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Validate", "validate");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Compile", "compile");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Test", "test");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Package", "package");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Integration", "integration-test");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Verify", "verify");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Install", "install");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Deploy", "deploy");					
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Clean", "clean");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Validate", "validate");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Compile", "compile");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Test", "test");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Package", "package");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Integration", "integration-test");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Verify", "verify");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Install", "install");
+					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Deploy", "deploy");					
 				}
 			}
 			
