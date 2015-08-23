@@ -9,8 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
-import com.tifsoft.mavenbuildbuddy.pom.BuildXMLProcessor.BuildProfile;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildPOMContentsLister {
 	static Logger LOG = LoggerFactory.getLogger(BuildPOMContentsLister.class);

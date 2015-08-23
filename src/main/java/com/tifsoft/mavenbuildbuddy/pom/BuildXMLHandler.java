@@ -5,7 +5,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.tifsoft.mavenbuildbuddy.pom.BuildXMLProcessor.BuildProfile;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildXMLHandler extends BuildXMLHandlerBase {
 	

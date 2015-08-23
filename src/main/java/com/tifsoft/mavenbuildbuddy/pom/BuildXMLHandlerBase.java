@@ -11,5 +11,6 @@ import org.xml.sax.helpers.DefaultHandler;
  * APIs distinct.
  */
 public class BuildXMLHandlerBase extends DefaultHandler {
-	public BuildData data = new BuildData();
+	//public BuildData data = new BuildData();
+	//String module;
 }

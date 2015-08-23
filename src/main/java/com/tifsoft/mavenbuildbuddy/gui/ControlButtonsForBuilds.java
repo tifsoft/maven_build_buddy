@@ -20,24 +20,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
-import com.tifsoft.mavenbuildbuddy.gui.ControlButtonsForBuilds.ActionSettings;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.pom.BuildPOMContentsLister;
 import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
-import com.tifsoft.mavenbuildbuddy.pom.BuildXMLProcessor.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 
 public class ControlButtonsForBuilds {
 	static final Logger LOG = LoggerFactory.getLogger(ControlButtonsForBuilds.class.getName());
-
-	private JButton buttonStart;
-	private JButton buttonBuildGUI;
-	private JButton buttonBuildAnalysisAssistant;
-	private JButton buttonBuildAnalysisGUI;
-	private JButton buttonBuildAnalysisAll;
-	private JButton buttonBuildAll;
-
-	public void addPanel(final JPanel panel) {
-	}
 	
 	public static JScrollPane setUp(JPanel buildArray) {		
 		JScrollPane jsp = new JScrollPane(); 
@@ -85,22 +74,11 @@ public class ControlButtonsForBuilds {
 					addBuildLifecycleButton(buildArray, con, profile, module, "Integration", "integration-test");
 					addBuildLifecycleButton(buildArray, con, profile, module, "Verify", "verify");
 					addBuildLifecycleButton(buildArray, con, profile, module, "Install", "install");
-					addBuildLifecycleButton(buildArray, con, profile, module, "Deploy", "deploy");
-					
-					//validate - validate the project is correct and all necessary information is available
-					//compile - compile the source code of the project
-					//test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
-					//package - take the compiled code and package it in its distributable format, such as a JAR.
-					//integration-test - process and deploy the package if necessary into an environment where integration tests can be run
-					//verify - run any checks to verify the package is valid and meets quality criteria
-					//install - install the package into the local repository, for use as a dependency in other projects locally
-					//deploy - done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
-					
+					addBuildLifecycleButton(buildArray, con, profile, module, "Deploy", "deploy");					
 				}
 			}
 			
 			jsp.setPreferredSize(new Dimension(800, 554));
-	
 			jsp.setViewportView(buildArray);
 		} catch (Exception e) {
 			e.printStackTrace();

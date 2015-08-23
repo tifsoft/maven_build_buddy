@@ -11,17 +11,10 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
+
 public class BuildXMLProcessor {
 	static ArrayList<BuildProfile> profileList;
-	
-	public static class BuildProfile {
-		public String profile;
-		public ArrayList<String> moduleList = new ArrayList<String>();
-		public BuildProfile(String profile) {
-			super();
-			this.profile = profile;
-		}
-	}
 	
 	static void executeFile(final String path, BuildXMLHandlerBase handler) throws ParserConfigurationException, SAXException, IOException {
 		profileList = new ArrayList<BuildProfile>();
@@ -45,7 +38,7 @@ public class BuildXMLProcessor {
 		// Create an instance of this class; it defines all the handler methods
 		//final UnitTestXMLHandler handler = new UnitTestXMLHandler();
 
-		handler.data.module = path;
+		//handler.module = path;
 
 		// Finally, tell the parser to parse the input and notify the handler
 		try {
