@@ -14,10 +14,10 @@ import org.xml.sax.SAXException;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildXMLProcessor {
-	static ArrayList<BuildProfile> profileList;
+	//static ArrayList<BuildProfile> profileList;
 	
 	static void executeFile(final String path, BuildXMLHandlerBase handler) throws ParserConfigurationException, SAXException, IOException {
-		profileList = new ArrayList<BuildProfile>();
+		//profileList = new ArrayList<BuildProfile>();
 		// Create a JAXP "parser factory" for creating SAX parsers
 		final javax.xml.parsers.SAXParserFactory spf = SAXParserFactory.newInstance();
 

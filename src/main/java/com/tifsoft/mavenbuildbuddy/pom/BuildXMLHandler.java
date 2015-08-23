@@ -5,11 +5,15 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
+import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildXMLHandler extends BuildXMLHandlerBase {
 	
+	private static final String DEFAULT_PROFILE = "DefaultProfile";
+
 	static org.slf4j.Logger LOG = LoggerFactory.getLogger(BuildXMLHandler.class);
 
 	static enum BuildPOMTagType {
@@ -43,8 +47,11 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 	}
 
 	private void storeProfile(String string) {
+		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+		pom.profileList.put(this.currentBuildProfile.toString(), this.currentBuildProfile);
+		
 		//System.out.println("Profile: " + string);
-		BuildXMLProcessor.profileList.add(this.currentBuildProfile);
+		//BuildXMLProcessor.profileList.add(this.currentBuildProfile);
 		this.currentBuildProfile = new BuildProfile(string);
 		this.type = null;
 	}
@@ -96,9 +103,11 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 
 	@Override
 	public void endDocument() throws SAXException {
-		//...
-		if (BuildXMLProcessor.profileList.size() == 0) {
-			this.storeProfile("DefaultProfile");
+		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+		pom.profileList.put(this.currentBuildProfile.toString(), this.currentBuildProfile);
+
+		if (pom.profileList.size() == 0) {
+			this.storeProfile(DEFAULT_PROFILE);
 		}
 	}
 }

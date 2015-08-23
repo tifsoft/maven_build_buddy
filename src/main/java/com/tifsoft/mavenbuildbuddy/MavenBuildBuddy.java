@@ -2,13 +2,16 @@ package com.tifsoft.mavenbuildbuddy;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.gui.BuildBuddyMainGUI;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 import com.tifsoft.mavenbuildbuddy.utils.PathFinder;
 
@@ -51,7 +54,7 @@ public class MavenBuildBuddy {
 	
 	public static final String rootPath = PathFinder.getPathToMainPOMFile();
 	
-	List<BuildPOM> pomDataList = new ArrayList<BuildPOM>();
+	public static Map<String, BuildPOM> pomMap = new HashMap<String, BuildPOM>();
 
 	public static void main(final String[] args) {
 		final ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);

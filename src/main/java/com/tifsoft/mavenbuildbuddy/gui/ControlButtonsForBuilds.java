@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
+import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.pom.BuildPOMContentsLister;
 import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
@@ -33,11 +34,11 @@ public class ControlButtonsForBuilds {
 		JScrollPane jsp = new JScrollPane(); 
 		buildArray.setLayout(new GridBagLayout());
 		GridBagConstraints con = new GridBagConstraints();
-		ArrayList<BuildProfile> profileList = null;
+		BuildPOM buildPOM = null;
 		try {
-			profileList = BuildPOMContentsLister.parsePOM();
-		
-			for (BuildProfile buildProfile : profileList) {
+			buildPOM = BuildPOMContentsLister.parsePOM();
+			MavenBuildBuddy.pomMap.put(BuildPOM.DEFAULT_POM, buildPOM);
+			for (BuildProfile buildProfile : buildPOM.profileList.values()) {
 				con.gridx = 0;
 				con.gridy++;
 				con.anchor = GridBagConstraints.CENTER;
