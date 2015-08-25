@@ -19,10 +19,10 @@ public class BuildPOMContentsLister {
 	static Logger LOG = LoggerFactory.getLogger(BuildPOMContentsLister.class);
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		//BuildPOM bp = MavenBuildBuddy.pomMap.get("DefaultPOM");
-		BuildPOM profileList = parsePOM();
+		//BuildPOM buildPOM = MavenBuildBuddy.pomMap.get("DefaultPOM");
+		BuildPOM buildPOM = parsePOM();
 		//LOGGER.info("List size: " + profileList.size());
-		for (BuildProfile buildProfile : profileList.profileList.values()) {
+		for (BuildProfile buildProfile : buildPOM.profileList.values()) {
 			LOG.info("Profile: " + buildProfile.profile);
 			for (BuildModule module : buildProfile.moduleList.values()) {
 				LOG.info("Module: " + module.getName());				
@@ -30,8 +30,7 @@ public class BuildPOMContentsLister {
 		}
 	}
 
-	public static BuildPOM parsePOM() throws ParserConfigurationException,
-			SAXException, IOException {
+	public static BuildPOM parsePOM() throws ParserConfigurationException, SAXException, IOException {
 		String path = "../" + "pom.xml";
 		//Logger.
 		BuildXMLHandler handler = new BuildXMLHandler();
@@ -40,5 +39,4 @@ public class BuildPOMContentsLister {
 		//LOGGER.info("Build module size: " + BuildXMLProcessor.profileList.size());				
 		return MavenBuildBuddy.pomMap.get(DEFAULT_POM);
 	}
-
 }

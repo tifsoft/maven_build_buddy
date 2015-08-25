@@ -12,8 +12,9 @@ public class LaunchBuildProcesses {
 	public static final String DEFAULT_PROFILE = "DefaultProfile";
 	static final Logger LOG = LoggerFactory.getLogger(LaunchBuildProcesses.class.getName());
 
+	public static LineProcessorWithMonitorThread executionClientThread;
 	static void executeClientScript(final String exec, final LineProcessorBuild lineProcessor) {
-		LineProcessorWithMonitorThread executionClientThread = new LineProcessorWithMonitorThread(exec, lineProcessor);
+		 executionClientThread = new LineProcessorWithMonitorThread(exec, lineProcessor);
 		executionClientThread.start();
 	}
 
@@ -21,7 +22,7 @@ public class LaunchBuildProcesses {
 		String moduleOption = resume ? " -rf" : " -pl";
 		String pathToMainPOMFile = PathFinder.getPathToMainPOMFile();
 		String profileSwitch = profile.equals(DEFAULT_PROFILE) ? "" : " -P " + profile;
-		boolean skipTests = MavenBuildBuddy.gui.CHECKBOX_SKIP_TESTS.isSelected();
+		boolean skipTests = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
 		String execString = "/usr/local/bin/mvn "+action+" -f "+pathToMainPOMFile+extraOptions+profileSwitch+moduleOption+" "+module;
 		LOG.info("Exec: " + execString);

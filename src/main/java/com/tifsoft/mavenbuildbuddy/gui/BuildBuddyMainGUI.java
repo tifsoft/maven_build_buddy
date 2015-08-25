@@ -13,7 +13,6 @@ import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,15 +36,11 @@ public class BuildBuddyMainGUI extends JPanel {
 	
 	private static final long serialVersionUID = 1;
 
-	public static final JCheckBox CHECKBOX_CLEAN = new JCheckBox("Clean first", true);
-	public static final JCheckBox CHECKBOX_RESUME = new JCheckBox("Resume from", true);
-	public static final JCheckBox CHECKBOX_SKIP_TESTS = new JCheckBox("Skip tests", false);
-
 	public final ControlButtonsForBuilds controlButtonsForCompleteBuilds = new ControlButtonsForBuilds();
 	public JTextPane textPane = new JTextPane();	
 	private static final Color BACKGROUND_COLOR = new Color(0xFFF8F8F8);
 	public final JFrame frame = new JFrame("Maven Build Buddy");
-	public JPanel panelOptionsPanel = new JPanel(new BorderLayout());
+	public OptionsPanel optionsPanel = new OptionsPanel();
 	public JTabbedPane bigTabbedPane;
 	//public static final String SHOW_CONSOLE_OUTPUT = "Show console output";
 	static final Logger LOG = LoggerFactory.getLogger(BuildBuddyMainGUI.class);
@@ -105,20 +100,12 @@ public class BuildBuddyMainGUI extends JPanel {
 
 		this.bigTabbedPane = new JTabbedPane();
 		
-		panelOptionsPanel = new JPanel();
-		panelOptionsPanel.add(CHECKBOX_CLEAN);
-		panelOptionsPanel.add(CHECKBOX_RESUME);
-		panelOptionsPanel.add(CHECKBOX_SKIP_TESTS);
-		
-		//JTextArea textArea = new JTextArea();
 		DefaultCaret caret = (DefaultCaret)textPane.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		textPane.setBackground(Color.black);
 		textPane.setForeground(Color.green);
 		textPane.setEditable(false);
-		//textPane.set
 		
-		//JTextPane textPane = new JTextPane();
 		JPanel noWrapPanel = new JPanel( new BorderLayout() );
 		noWrapPanel.add( textPane );
 		JScrollPane bottomJSP = new JScrollPane( noWrapPanel );
@@ -128,10 +115,11 @@ public class BuildBuddyMainGUI extends JPanel {
 		JScrollPane jsp = ControlButtonsForBuilds.setUp(buildArray);
 		
 		topPanel.add(jsp, BorderLayout.CENTER);
-		topPanel.add(panelOptionsPanel, BorderLayout.SOUTH);
+		topPanel.add(optionsPanel, BorderLayout.SOUTH);
 		//JPanel botPanel = new JPanel();
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomJSP);
 		splitPane.setDividerLocation(250);
+		splitPane.setOneTouchExpandable(true);
 		this.bigTabbedPane.addTab("Build", null, splitPane, "Build using Maven");
 		this.add(this.bigTabbedPane,BorderLayout.CENTER);
 		this.bigTabbedPane.validate();

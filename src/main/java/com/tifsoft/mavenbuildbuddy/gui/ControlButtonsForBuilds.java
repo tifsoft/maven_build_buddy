@@ -125,8 +125,8 @@ public class ControlButtonsForBuilds {
 				public void actionPerformed(ActionEvent e) {
 					String title = "Incremental build of profile <"+ActionSettings.this.profile+"> starting from module <"+ActionSettings.this.module+">";
 					LOG.info(MBBMarkers.BUILD, title);
-					boolean resume = MavenBuildBuddy.gui.CHECKBOX_RESUME.isSelected();
-					boolean clean = MavenBuildBuddy.gui.CHECKBOX_CLEAN.isSelected();
+					boolean resume = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_RESUME.isSelected();
+					boolean clean = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_CLEAN.isSelected();
 					String actualAction = (clean ? "clean " : "") + ActionSettings.this.actionForMaven;
 					LaunchBuildProcesses.mvnExecute(title, actualAction, ActionSettings.this.profile, ActionSettings.this.module, resume);
 				}

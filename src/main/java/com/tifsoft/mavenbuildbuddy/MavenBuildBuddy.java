@@ -59,6 +59,7 @@ public class MavenBuildBuddy {
 	public static void main(final String[] args) {
 		final ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 		root.setLevel(Level.INFO);
+		pomMap.put(BuildPOM.DEFAULT_POM, new BuildPOM(BuildPOM.DEFAULT_POM));
 		LOG = LoggerFactory.getLogger(MavenBuildBuddy.class);
 		LOG.info(MBBMarkers.MBB, "Starting Maven Build Buddy");
 		gui = new BuildBuddyMainGUI();
