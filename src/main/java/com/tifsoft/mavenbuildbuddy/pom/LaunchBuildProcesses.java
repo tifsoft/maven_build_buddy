@@ -28,6 +28,7 @@ public class LaunchBuildProcesses {
 		LOG.info("Exec: " + execString);
 		LineProcessorBuild lineProcessor = new LineProcessorBuild();
 		MavenBuildBuddy.gui.textPane.setText("");
+		MavenBuildBuddy.gui.optionsPanel.BUTTON_ABORT.setEnabled(true);
 		executeClientScript(execString, lineProcessor);
 	}
 

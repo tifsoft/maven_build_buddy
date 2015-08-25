@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
 
 public class OptionsPanel extends JPanel {
@@ -20,7 +21,8 @@ public class OptionsPanel extends JPanel {
 	public static final JCheckBox CHECKBOX_CLEAN = new JCheckBox("Clean first", true);
 	public static final JCheckBox CHECKBOX_RESUME = new JCheckBox("Resume from", true);
 	public static final JCheckBox CHECKBOX_SKIP_TESTS = new JCheckBox("Skip tests", false);
-	private static final JButton BUTTON_ABORT = new JButton("Abort");
+	public static final JButton BUTTON_ABORT = new JButton("Abort");
+	public static final JButton BUTTON_CLEAR = new JButton("Clear");
 
 	public OptionsPanel() {
 		super();
@@ -28,17 +30,27 @@ public class OptionsPanel extends JPanel {
 		add(this.CHECKBOX_RESUME);
 		add(this.CHECKBOX_SKIP_TESTS);
 		add(this.BUTTON_ABORT);
+		add(this.BUTTON_CLEAR);
 //		LOG.info("Create button to kill thread");
 		
-		ActionListener al = new ActionListener() {
+		ActionListener alAbort = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LOG.info("Kill thread");
-				//abort();
 				LaunchBuildProcesses.executionClientThread.close();
+				BUTTON_ABORT.setEnabled(false);
 			}
 		};
-		BUTTON_ABORT.addActionListener(al);
-		setVisible(true);
+		BUTTON_ABORT.addActionListener(alAbort);
+		BUTTON_ABORT.setEnabled(false);
+
+		ActionListener alClear = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LOG.info("Clear");
+				MavenBuildBuddy.gui.textPane.setText("");
+			}
+		};
+		BUTTON_CLEAR.addActionListener(alClear);
 	}
 }
