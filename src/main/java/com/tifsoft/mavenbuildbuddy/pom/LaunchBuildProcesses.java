@@ -1,9 +1,14 @@
 package com.tifsoft.mavenbuildbuddy.pom;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
+import com.tifsoft.mavenbuildbuddy.gui.OptionsPanel;
+import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 import com.tifsoft.mavenbuildbuddy.utils.PathFinder;
 import com.tifsoft.processmanager.LineProcessorWithMonitorThread;
@@ -22,17 +27,26 @@ public class LaunchBuildProcesses {
 		String moduleOption = resume ? " -rf" : " -pl";
 		String pathToMainPOMFile = PathFinder.getPathToMainPOMFile();
 		String profileSwitch = profile.equals(DEFAULT_PROFILE) ? "" : " -P " + profile;
-		boolean skipTests = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
+		boolean skipTests = OptionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
 		String execString = "/usr/local/bin/mvn "+action+" -f "+pathToMainPOMFile+extraOptions+profileSwitch+moduleOption+" "+module;
 		LOG.info("Exec: " + execString);
-		LineProcessorBuild lineProcessor = new LineProcessorBuild();
+		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+		//LOG.info("pom: " + pom);
+		//LOG.info("looking for: " + profile);
+		BuildProfile buildProfile = pom.profileList.get(profile);
+		Set<String>stringSet = pom.profileList.keySet();
+		//for (String string : stringSet) {
+			//LOG.info("String: " + string);			
+		//}
+		//LOG.info("buildProfile: " + buildProfile);
+		LineProcessorBuild lineProcessor = new LineProcessorBuild(buildProfile);
 		MavenBuildBuddy.gui.textPane.setText("");
 		MavenBuildBuddy.gui.optionsPanel.BUTTON_ABORT.setEnabled(true);
 		executeClientScript(execString, lineProcessor);
 	}
 
-	public static void findBugs(String profile, String module) {
+	/*public static void findBugs(String profile, String module) {
 		String title = "Find Bugs in profile " + profile;
 		String pomPath = PathFinder.getPathToMainPOMFile();
 		String moduleOption = "";
@@ -43,7 +57,7 @@ public class LaunchBuildProcesses {
 		String execString = "/usr/local/bin/mvn findbugs:check -f "+pomPath+" -P="+profile+moduleOption;
 		LineProcessorBuild lineProcessor = new LineProcessorBuild();
 		executeClientScript(execString, lineProcessor);		
-	}
+	}*/
 
 	private static String getSuffix(String version) {
 		String suffix = "";
@@ -51,11 +65,11 @@ public class LaunchBuildProcesses {
 		return suffix;
 	}
 
-	public static void runJConsole() {
+	/*public static void runJConsole() {
 		LOG.info(MBBMarkers.EXECUTE, "Run JConsole");
 		String jdkHome = System.getenv("JAVA_HOME");
 		String execString = jdkHome + "/bin/JConsole.exe";	
 		LineProcessorBuild lineProcessor = new LineProcessorBuild();
 		executeClientScript(execString, lineProcessor);
-	}
+	}*/
 }

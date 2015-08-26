@@ -12,8 +12,6 @@ import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 
 public class BuildXMLHandler extends BuildXMLHandlerBase {
 	
-	private static final String DEFAULT_PROFILE = "DefaultProfile";
-
 	static org.slf4j.Logger LOG = LoggerFactory.getLogger(BuildXMLHandler.class);
 
 	static enum BuildPOMTagType {
@@ -37,7 +35,7 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 					break;
 				case MODULE:
 					//System.out.println("Module: " + string);
-					this.currentBuildProfile.moduleList.add(new BuildModule(string, null));
+					this.currentBuildProfile.moduleList.add(new BuildModule(string));
 					this.type = null;
 					break;
 				default:
@@ -46,13 +44,10 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 		}
 	}
 
-	private void storeProfile(String string) {
+	private void storeProfile(String newBuildProfile) {
 		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
-		pom.profileList.put(this.currentBuildProfile.toString(), this.currentBuildProfile);
-		
-		//System.out.println("Profile: " + string);
-		//BuildXMLProcessor.profileList.add(this.currentBuildProfile);
-		this.currentBuildProfile = new BuildProfile(string);
+		pom.profileList.put(this.currentBuildProfile.getName(), this.currentBuildProfile);
+		this.currentBuildProfile = new BuildProfile(newBuildProfile);
 		this.type = null;
 	}
 
@@ -104,10 +99,11 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 	@Override
 	public void endDocument() throws SAXException {
 		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
-		pom.profileList.put(this.currentBuildProfile.toString(), this.currentBuildProfile);
+		//pom.profileList.put(this.currentBuildProfile.toString(), this.currentBuildProfile);
 
 		if (pom.profileList.size() == 0) {
-			this.storeProfile(DEFAULT_PROFILE);
+			LOG.info("Set up profile: " + this.currentBuildProfile);
+			this.storeProfile("XYZZY");
 		}
 	}
 }

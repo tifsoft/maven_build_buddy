@@ -23,7 +23,7 @@ public class BuildPOMContentsLister {
 		BuildPOM buildPOM = parsePOM();
 		//LOGGER.info("List size: " + profileList.size());
 		for (BuildProfile buildProfile : buildPOM.profileList.values()) {
-			LOG.info("Profile: " + buildProfile.profile);
+			LOG.info("Profile: " + buildProfile.getName());
 			for (BuildModule module : buildProfile.moduleList) {
 				LOG.info("Module: " + module.getName());				
 			}			

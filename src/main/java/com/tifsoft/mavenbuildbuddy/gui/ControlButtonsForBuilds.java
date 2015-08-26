@@ -45,7 +45,7 @@ public class ControlButtonsForBuilds {
 				con.fill = GridBagConstraints.HORIZONTAL;
 				con.gridwidth = 8; //GridBagConstraints.REMAINDER;
 				con.ipady = 10;
-				final String profile = buildProfile.profile;
+				final String profile = buildProfile.getName();
 				JLabel labelProfile = new JLabel(profile,SwingConstants.CENTER);
 				labelProfile.setOpaque(true);
 				final Font font = new Font("Arial", Font.BOLD, 18);
@@ -67,6 +67,11 @@ public class ControlButtonsForBuilds {
 					}
 					JLabel labelModule = new JLabel(processedModule,SwingConstants.LEFT);
 					buildArray.add(labelModule, con);
+					
+					//BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+					//BuildProfile buildProfile = pom.profileList.get(profile);
+					module.setComponent(labelModule);
+
 					con.gridx++;
 					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Clean", "clean");
 					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Validate", "validate");

@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
+import com.tifsoft.mavenbuildbuddy.model.BuildModule;
+import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 import com.tifsoft.processmanager.LineProcessorBaseClass;
 
@@ -22,13 +24,20 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 	static final Logger LOG = LoggerFactory.getLogger(LineProcessorBuild.class.getName());
 	
 	static Color lastColor = Color.green;
+	
+	BuildProfile buildProfile;
+
+	public LineProcessorBuild(BuildProfile buildProfile) {
+		super();
+		this.buildProfile = buildProfile;
+	}
 
 	@Override
 	public void process(String line) {
 		printLine(line);
 	}
 
-	private static void printLine(String line) {
+	private void printLine(String line) {
 		JTextPane textPane = MavenBuildBuddy.gui.textPane;
 		Document doc = textPane.getDocument();
 		int startIdx = doc.getLength();
@@ -43,8 +52,14 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			color = Color.red;
 		} else if (line.startsWith("[INFO] ---")) {
 			color = new Color(0xFF00C000);
-		} else if (line.startsWith("[INFO] Building")) {
+		} else if (line.startsWith("[INFO] Building ")) {
 			color = new Color(0xFF66FF66);
+			for (BuildModule buildModule : this.buildProfile.moduleList) {
+				if (line.startsWith("[INFO] Building " + buildModule.name)) {
+					LOG.info(MBBMarkers.MBB, "***** Found "+buildModule.name+"*******");
+					buildModule.setColor(Color.yellow);
+				}
+			}
 		} else if (line.startsWith("[INFO] Includ")) {
 			color = new Color(0xFF00A000);
 		} else if (line.startsWith("[INFO]")) {

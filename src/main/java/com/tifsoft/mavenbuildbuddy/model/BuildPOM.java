@@ -8,8 +8,14 @@ public class BuildPOM {
 
 	public String name;
 	public Map<String, BuildProfile> profileList = new HashMap<String, BuildProfile>();
+
 	public BuildPOM(String name) {
 		super();
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "BuildPOM [name=" + name + ", profileList=" + profileList + "]";
 	}
 }

@@ -4,14 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuildProfile {
-	//public String name;
+	
+	public static final String DEFAULT_PROFILE = "DefaultProfile";
+
+	@Override
+	public String toString() {
+		return "BuildProfile [moduleList=" + moduleList + ", profile=" + name + "]";
+	}
 	public List<BuildModule> moduleList = new ArrayList<BuildModule>();
 	
-	public String profile;
-	//public ArrayList<String> moduleList = new ArrayList<String>();
-	public BuildProfile(String profile) {
-		super();
-		this.profile = profile;
+	public String name;
+	public String getName() {
+		return name;
 	}
-
+	//public void setName(String name) {
+		//this.name = name;
+	//}
+	//public ArrayList<String> moduleList = new ArrayList<String>();
+	public BuildProfile(String name) {
+		super();
+		this.name = name;
+	}
 }
