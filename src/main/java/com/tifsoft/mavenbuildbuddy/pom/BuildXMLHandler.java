@@ -37,7 +37,7 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 					break;
 				case MODULE:
 					//System.out.println("Module: " + string);
-					this.currentBuildProfile.moduleList.put(string, new BuildModule(string, null));
+					this.currentBuildProfile.moduleList.add(new BuildModule(string, null));
 					this.type = null;
 					break;
 				default:

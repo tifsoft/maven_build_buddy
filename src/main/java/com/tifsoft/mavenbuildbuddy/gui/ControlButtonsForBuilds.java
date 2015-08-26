@@ -54,7 +54,7 @@ public class ControlButtonsForBuilds {
 				labelProfile.setForeground(Color.white);
 				buildArray.add(labelProfile, con);
 				
-				for (final BuildModule module : buildProfile.moduleList.values()) {
+				for (final BuildModule module : buildProfile.moduleList) {
 					con.gridy++;
 					con.gridx = 0;
 					con.anchor = GridBagConstraints.LINE_START;

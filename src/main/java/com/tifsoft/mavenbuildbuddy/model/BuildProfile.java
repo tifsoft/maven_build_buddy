@@ -1,12 +1,11 @@
 package com.tifsoft.mavenbuildbuddy.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class BuildProfile {
 	//public String name;
-	public Map<String, BuildModule> moduleList = new HashMap<String, BuildModule>();
+	public List<BuildModule> moduleList = new ArrayList<BuildModule>();
 	
 	public String profile;
 	//public ArrayList<String> moduleList = new ArrayList<String>();
