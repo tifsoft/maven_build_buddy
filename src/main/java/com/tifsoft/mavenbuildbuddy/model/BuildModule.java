@@ -36,6 +36,12 @@ public class BuildModule {
 	}
 
 	public void setBuildStage(BuildStage buildStage) {
-		this.labelModule.setText(" " + buildStage.getStatus() + " ");
+		setBuildStageText(buildStage.getStatus());
+	}
+
+	public void setBuildStageText(String text) {
+		String ic = text.substring(0, 1);
+		String rest = text.substring(1);
+		this.labelModule.setText(" " + ic.toUpperCase() + rest + " ");
 	}
 }

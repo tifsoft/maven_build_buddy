@@ -54,6 +54,14 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			color = Color.yellow;
 		} else if (line.startsWith("[ERR")) {
 			color = Color.red;
+		} else if (line.startsWith("[INFO] --- maven-")) {
+			color = new Color(0xFF30B030);
+			int beginIndex = line.indexOf(':'); 
+			int beginIndex2 = line.indexOf(':', beginIndex + 1) + 1; 
+			int endIndex = line.indexOf(' ', beginIndex2);
+			String text = line.substring(beginIndex2, endIndex);
+			//LOG.info(MBBMarkers.MBB, "***** Found "+text+"*******");
+			this.lastBuildModule.setBuildStageText(text);
 		} else if (line.startsWith("[INFO] ---")) {
 			color = new Color(0xFF00C000);
 		} else if (line.startsWith("[INFO] Building ")) {
