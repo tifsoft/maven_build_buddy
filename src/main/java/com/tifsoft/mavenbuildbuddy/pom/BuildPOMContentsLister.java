@@ -31,7 +31,7 @@ public class BuildPOMContentsLister {
 	}
 
 	public static BuildPOM parsePOM() throws ParserConfigurationException, SAXException, IOException {
-		String path = "../" + "pom.xml";
+		String path = "../PS/knowledgeHub/" + "pom.xml";
 		//Logger.
 		BuildXMLHandler handler = new BuildXMLHandler();
 		BuildXMLProcessor.executeFile(path, handler);

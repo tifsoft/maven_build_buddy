@@ -22,17 +22,15 @@ public class MavenBuildBuddy {
 	/*
 	 * ToDo
 	 * ====
-	 * Simple progress indicator 
+	 * Preferences: Fixed-width font for text output 
+	 * Preferences: Configurable path to Maven
+	 * Count warnings and errors - display in summary at end
 	 * Options panel: mvn command prefix
 	 * Options panel: ignore modules/profiles
-	 * Interrupt task - destroy mvn process
 	 * Support multiple POM files in multiple tabs
 	 * Support multiple profiles in multiple tabs
-	 * Count warnings and errors - display in summary at end
 	 * Print top summary: command executed
 	 * Print bottom summary: count of warnings and errors
-	 * Fixed-width font for text output (configurable in preferences)
-	 * Configurable path to Maven (configurable in preferences)
 	 * Better support for Windows
 	 * Put on Tifsoft
 	 * Better multi-tasking for build process (lower priority thread?)
@@ -46,6 +44,8 @@ public class MavenBuildBuddy {
 	 * -Put on GitHub
 	 * -Options panel: clean / resume
 	 * -Support all maven build stages
+	 -* Simple progress indicator 
+	 -* Interrupt task - destroy mvn process
 	 */
 	
 	static Logger LOG;

@@ -152,7 +152,7 @@ public class BuildBuddyMainGUI extends JPanel {
 	public void createGUI() {
 		//Have nice window decorations.
 		JFrame.setDefaultLookAndFeelDecorated(true);
-
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLayout(new GridBagLayout());
 
 		//Create and set up the content pane.

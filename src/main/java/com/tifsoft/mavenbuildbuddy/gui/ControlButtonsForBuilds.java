@@ -23,8 +23,9 @@ import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
+import com.tifsoft.mavenbuildbuddy.model.BuildStage;
 import com.tifsoft.mavenbuildbuddy.pom.BuildPOMContentsLister;
-import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
+import com.tifsoft.mavenbuildbuddy.utils.LaunchBuildProcesses;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 
 public class ControlButtonsForBuilds {
@@ -65,23 +66,22 @@ public class ControlButtonsForBuilds {
 						int i = module.getName().indexOf('/');
 						processedModule = module.getName().substring(i + 1);
 					}
-					JLabel labelModule = new JLabel(processedModule,SwingConstants.LEFT);
+					JLabel labelModule = new JLabel(processedModule + " ",SwingConstants.LEFT);
 					buildArray.add(labelModule, con);
+					con.gridx++;
 					
+					JLabel labelStatus = new JLabel(" Unknown ",SwingConstants.CENTER);
+					labelStatus.setOpaque(true);
+					labelStatus.setBackground(Color.red);
+					buildArray.add(labelStatus, con);
 					//BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
 					//BuildProfile buildProfile = pom.profileList.get(profile);
-					module.setComponent(labelModule);
-
+					module.setComponent(labelStatus);
 					con.gridx++;
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Clean", "clean");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Validate", "validate");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Compile", "compile");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Test", "test");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Package", "package");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Integration", "integration-test");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Verify", "verify");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Install", "install");
-					addBuildLifecycleButton(buildArray, con, profile, processedModule, "Deploy", "deploy");					
+					
+					for (BuildStage bs : BuildStage.set) {
+						addBuildLifecycleButton(buildArray, con, profile, processedModule, bs);						
+					}
 				}
 			}
 			
@@ -95,17 +95,17 @@ public class ControlButtonsForBuilds {
 	}
 
 	private static void addBuildLifecycleButton(JPanel buildArray, GridBagConstraints con, final String profile,
-			final String module, String title, String command) {
-		JButton buttonInstallOnly = new JButton(title);
+			final String module, BuildStage buildStage) {
+		JButton buttonInstallOnly = new JButton(buildStage.getLabel());
 		buttonInstallOnly.setMargin(new Insets(1, 1, 1, 1));
 		buildArray.add(buttonInstallOnly, con);
-		addMavenActions(buttonInstallOnly, profile, module, command);
+		addMavenActions(buttonInstallOnly, profile, module, buildStage);
 		con.gridx++;
 	}
 	
-	private static void addMavenActions(JButton button, String profile, String module, String actionForMaven) {
+	private static void addMavenActions(JButton button, String profile, String module, BuildStage buildStage) {
 		button.setToolTipText("Maven build - profile <"+profile+"> - module <"+module+">");
-		ActionSettings as = new ActionSettings(profile, module, "", actionForMaven);
+		ActionSettings as = new ActionSettings(profile, module, "", buildStage);
 		as.addMVNListener(button);
 	}
 
@@ -113,14 +113,14 @@ public class ControlButtonsForBuilds {
 		private String profile;
 		private String module;
 		String cleanOption;
-		String actionForMaven;
+		BuildStage buildStage;
 		//boolean resume;
 		
-		public ActionSettings(String profile, String module, String cleanOption, String actionForMaven) {
+		public ActionSettings(String profile, String module, String cleanOption, BuildStage buildStage) {
 			this.profile = profile;
 			this.module = module;
 			this.cleanOption = cleanOption;
-			this.actionForMaven = actionForMaven;
+			this.buildStage = buildStage;
 			//this.resume = resume;
 		}
 		
@@ -132,8 +132,9 @@ public class ControlButtonsForBuilds {
 					LOG.info(MBBMarkers.BUILD, title);
 					boolean resume = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_RESUME.isSelected();
 					boolean clean = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_CLEAN.isSelected();
-					String actualAction = (clean ? "clean " : "") + ActionSettings.this.actionForMaven;
-					LaunchBuildProcesses.mvnExecute(title, actualAction, ActionSettings.this.profile, ActionSettings.this.module, resume);
+					//String actualAction = (clean ? "clean " : "") + ActionSettings.this.actionForMaven;
+					BuildStage buildStage = ActionSettings.this.buildStage;
+					LaunchBuildProcesses.mvnExecute(title, buildStage, ActionSettings.this.profile, ActionSettings.this.module, clean, resume);
 				}
 			});										
 		}

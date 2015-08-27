@@ -9,6 +9,7 @@ import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
+import com.tifsoft.mavenbuildbuddy.utils.LaunchBuildProcesses;
 
 public class BuildXMLHandler extends BuildXMLHandlerBase {
 	

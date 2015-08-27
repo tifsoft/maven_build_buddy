@@ -1,4 +1,4 @@
-package com.tifsoft.mavenbuildbuddy.pom;
+package com.tifsoft.mavenbuildbuddy.utils;
 
 import java.util.Set;
 
@@ -7,10 +7,11 @@ import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.gui.OptionsPanel;
+import com.tifsoft.mavenbuildbuddy.line.LineProcessorBuild;
+import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
-import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
-import com.tifsoft.mavenbuildbuddy.utils.PathFinder;
+import com.tifsoft.mavenbuildbuddy.model.BuildStage;
 import com.tifsoft.processmanager.LineProcessorWithMonitorThread;
 
 public class LaunchBuildProcesses {
@@ -23,24 +24,27 @@ public class LaunchBuildProcesses {
 		executionClientThread.start();
 	}
 
-	public static void mvnExecute(String title, String action, String profile, String module, boolean resume) {
+	public static void mvnExecute(String title, BuildStage buildStage, String profile, String module, boolean clean, boolean resume) {
 		String moduleOption = resume ? " -rf" : " -pl";
 		String pathToMainPOMFile = PathFinder.getPathToMainPOMFile();
 		String profileSwitch = profile.equals(DEFAULT_PROFILE) ? "" : " -P " + profile;
 		boolean skipTests = OptionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
-		String execString = "/usr/local/bin/mvn "+action+" -f "+pathToMainPOMFile+extraOptions+profileSwitch+moduleOption+" "+module;
+		String actualAction = (clean ? "clean " : "") + buildStage.getAction();
+		String execString = "/usr/local/bin/mvn "+actualAction+" -f "+pathToMainPOMFile+extraOptions+profileSwitch+moduleOption+" "+module;
 		LOG.info("Exec: " + execString);
 		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
 		//LOG.info("pom: " + pom);
 		//LOG.info("looking for: " + profile);
 		BuildProfile buildProfile = pom.profileList.get(profile);
-		Set<String>stringSet = pom.profileList.keySet();
+		BuildModule buildModule = buildProfile.getModuleFromName(module);
+		buildProfile.scrubModule(buildModule, resume);
+		//Set<String>stringSet = pom.profileList.keySet();
 		//for (String string : stringSet) {
 			//LOG.info("String: " + string);			
 		//}
 		//LOG.info("buildProfile: " + buildProfile);
-		LineProcessorBuild lineProcessor = new LineProcessorBuild(buildProfile);
+		LineProcessorBuild lineProcessor = new LineProcessorBuild(buildProfile, buildStage);
 		MavenBuildBuddy.gui.textPane.setText("");
 		MavenBuildBuddy.gui.optionsPanel.BUTTON_ABORT.setEnabled(true);
 		executeClientScript(execString, lineProcessor);

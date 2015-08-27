@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
-import com.tifsoft.mavenbuildbuddy.pom.LaunchBuildProcesses;
+import com.tifsoft.mavenbuildbuddy.utils.LaunchBuildProcesses;
 
 public class OptionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

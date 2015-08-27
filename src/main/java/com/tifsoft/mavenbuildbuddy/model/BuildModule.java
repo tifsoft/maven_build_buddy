@@ -20,18 +20,22 @@ public class BuildModule {
 
 	public void setComponent(JLabel labelModule) {
 		this.labelModule = labelModule;
-		this.labelModule.setOpaque(true);
-		
 	}
 
-	public void setColor(Color color) {
+	public void setBackground(Color color) {
 		this.labelModule.setBackground(color);
-		//this.labelModule.setForeground(Color.red);
-		this.labelModule.setVisible(true);
+	}
+	
+	public void setForeground(Color color) {
+		this.labelModule.setForeground(color);
 	}
 
 	@Override
 	public String toString() {
 		return "BuildModule [name=" + name + ", labelModule=" + labelModule + "]";
+	}
+
+	public void setBuildStage(BuildStage buildStage) {
+		this.labelModule.setText(" " + buildStage.getStatus() + " ");
 	}
 }
