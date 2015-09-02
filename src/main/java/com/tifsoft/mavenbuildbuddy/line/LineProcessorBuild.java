@@ -17,6 +17,7 @@ import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.model.BuildStage;
+import com.tifsoft.mavenbuildbuddy.model.TestingStage;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 import com.tifsoft.processmanager.LineProcessorBaseClass;
 
@@ -52,8 +53,14 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 		Color color = lastColor;
 		if (line.startsWith("[WARN")) {
 			color = Color.yellow;
+			if (lastBuildModule != null) {
+				lastBuildModule.setWarningCount(lastBuildModule.getWarningCount() + 1);
+			}
 		} else if (line.startsWith("[ERR")) {
 			color = Color.red;
+			if (lastBuildModule != null) {
+				lastBuildModule.setErrorCount(lastBuildModule.getErrorCount() + 1);
+			}
 		} else if (line.startsWith("[INFO] --- maven-")) {
 			color = new Color(0xFF30B030);
 			int beginIndex = line.indexOf(':'); 
@@ -62,6 +69,9 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			String text = line.substring(beginIndex2, endIndex);
 			//LOG.info(MBBMarkers.MBB, "***** Found "+text+"*******");
 			this.lastBuildModule.setBuildStageText(text);
+			if ("test".equals(text)) {
+				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTING);
+			}
 		} else if (line.startsWith("[INFO] ---")) {
 			color = new Color(0xFF00C000);
 		} else if (line.startsWith("[INFO] Building ")) {
@@ -109,6 +119,9 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 		if (this.lastBuildModule != null) {
 			this.lastBuildModule.setBackground(Color.green);
 			this.lastBuildModule.setBuildStage(buildStage);
+			if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING) {
+				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTED);
+			}
 			this.lastBuildModule = null;
 		}
 	}

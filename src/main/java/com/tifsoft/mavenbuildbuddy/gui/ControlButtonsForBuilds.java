@@ -24,6 +24,7 @@ import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
 import com.tifsoft.mavenbuildbuddy.model.BuildProfile;
 import com.tifsoft.mavenbuildbuddy.model.BuildStage;
+import com.tifsoft.mavenbuildbuddy.model.TestingStage;
 import com.tifsoft.mavenbuildbuddy.pom.BuildPOMContentsLister;
 import com.tifsoft.mavenbuildbuddy.utils.LaunchBuildProcesses;
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
@@ -79,6 +80,27 @@ public class ControlButtonsForBuilds {
 					module.setComponent(labelStatus);
 					con.gridx++;
 					
+					JLabel labelWarnings = new JLabel(" 0 ",SwingConstants.CENTER);
+					labelWarnings.setOpaque(true);
+					//labelStatus.setBackground(Color.red);
+					buildArray.add(labelWarnings, con);
+					//BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+					//BuildProfile buildProfile = pom.profileList.get(profile);
+					module.setComponentWarnings(labelWarnings);
+					module.showWarningCounts();
+					con.gridx++;
+
+					JLabel labelTesting = new JLabel(" ? ",SwingConstants.CENTER);
+					labelTesting.setOpaque(true);
+					//labelStatus.setBackground(Color.red);
+					buildArray.add(labelTesting, con);
+					//BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+					//BuildProfile buildProfile = pom.profileList.get(profile);
+					module.setComponentTesting(labelTesting);
+					module.setTestingStage(TestingStage.TESTING_STAGE_UNTESTED);
+					//module.showWarningCounts();
+					con.gridx++;
+
 					for (BuildStage bs : BuildStage.set) {
 						addBuildLifecycleButton(buildArray, con, profile, processedModule, bs);						
 					}

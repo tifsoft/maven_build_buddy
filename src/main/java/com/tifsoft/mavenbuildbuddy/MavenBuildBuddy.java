@@ -22,15 +22,18 @@ public class MavenBuildBuddy {
 	/*
 	 * ToDo
 	 * ====
+	 * Command line - allow POM specification.
 	 * Preferences: Fixed-width font for text output 
+	 * Preferences: Font name, size and Color 
 	 * Preferences: Configurable path to Maven
-	 * Count warnings and errors - display in summary at end
+	 * Preferences: Word wrap option
 	 * Options panel: mvn command prefix
 	 * Options panel: ignore modules/profiles
+	 * Options panel: "refresh POM" button 
 	 * Support multiple POM files in multiple tabs
 	 * Support multiple profiles in multiple tabs
 	 * Print top summary: command executed
-	 * Print bottom summary: count of warnings and errors
+	 * Display count of warnings and errors in augmented module summary at end
 	 * Better support for Windows
 	 * Put on Tifsoft
 	 * Better multi-tasking for build process (lower priority thread?)

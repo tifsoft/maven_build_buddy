@@ -2,6 +2,7 @@ package com.tifsoft.mavenbuildbuddy.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -41,7 +42,9 @@ public class BuildBuddyMainGUI extends JPanel {
 	private static final Color BACKGROUND_COLOR = new Color(0xFFF8F8F8);
 	public final JFrame frame = new JFrame("Maven Build Buddy");
 	public OptionsPanel optionsPanel = new OptionsPanel();
-	public JTabbedPane bigTabbedPane;
+	public JTabbedPane tabbedPaneForPOMs;
+
+	private JPanel preferencesPanel = new JPanel();
 	//public static final String SHOW_CONSOLE_OUTPUT = "Show console output";
 	static final Logger LOG = LoggerFactory.getLogger(BuildBuddyMainGUI.class);
 
@@ -98,7 +101,7 @@ public class BuildBuddyMainGUI extends JPanel {
 		mainTestArray.add(panelMainCenter,BorderLayout.CENTER);
 		mainTestArray.add(panelMainSouth,BorderLayout.SOUTH);
 
-		this.bigTabbedPane = new JTabbedPane();
+		this.tabbedPaneForPOMs = new JTabbedPane();
 		
 		DefaultCaret caret = (DefaultCaret)textPane.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -120,10 +123,11 @@ public class BuildBuddyMainGUI extends JPanel {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomJSP);
 		splitPane.setDividerLocation(250);
 		splitPane.setOneTouchExpandable(true);
-		this.bigTabbedPane.addTab("Build", null, splitPane, "Build using Maven");
-		this.add(this.bigTabbedPane,BorderLayout.CENTER);
-		this.bigTabbedPane.validate();
-		this.bigTabbedPane.setVisible(true);
+		this.tabbedPaneForPOMs.addTab("POM", null, splitPane, "Build using Maven");
+		this.tabbedPaneForPOMs.addTab("Preferences", null, this.preferencesPanel , "Preferences");
+		this.add(this.tabbedPaneForPOMs,BorderLayout.CENTER);
+		this.tabbedPaneForPOMs.validate();
+		this.tabbedPaneForPOMs.setVisible(true);
 		this.validate();
 		this.setVisible(true);
 	}
