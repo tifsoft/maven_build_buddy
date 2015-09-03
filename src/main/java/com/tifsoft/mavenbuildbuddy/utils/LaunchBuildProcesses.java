@@ -46,6 +46,7 @@ public class LaunchBuildProcesses {
 		//LOG.info("buildProfile: " + buildProfile);
 		LineProcessorBuild lineProcessor = new LineProcessorBuild(buildProfile, buildStage);
 		MavenBuildBuddy.gui.textPane.setText("");
+		MavenBuildBuddy.gui.preferencesPanel.updateFont();
 		MavenBuildBuddy.gui.optionsPanel.BUTTON_ABORT.setEnabled(true);
 		executeClientScript(execString, lineProcessor);
 	}

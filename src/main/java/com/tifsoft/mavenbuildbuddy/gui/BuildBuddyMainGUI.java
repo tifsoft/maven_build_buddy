@@ -44,7 +44,7 @@ public class BuildBuddyMainGUI extends JPanel {
 	public OptionsPanel optionsPanel = new OptionsPanel();
 	public JTabbedPane tabbedPaneForPOMs;
 
-	private JPanel preferencesPanel = new JPanel();
+	public PreferencesPanel preferencesPanel = new PreferencesPanel();
 	//public static final String SHOW_CONSOLE_OUTPUT = "Show console output";
 	static final Logger LOG = LoggerFactory.getLogger(BuildBuddyMainGUI.class);
 
@@ -57,6 +57,7 @@ public class BuildBuddyMainGUI extends JPanel {
 		final JPanel bottomPanel = new JPanel();
 		final JPanel topPanel = new JPanel(new BorderLayout());
 		
+		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
 		final JPanel panelMainCenter = new JPanel();
 		panelMainCenter.setBackground(BACKGROUND_COLOR);
 		final JPanel panelMainSouth = new JPanel();	

@@ -6,6 +6,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
@@ -62,7 +63,6 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 				lastBuildModule.setErrorCount(lastBuildModule.getErrorCount() + 1);
 			}
 		} else if (line.startsWith("[INFO] --- maven-")) {
-			color = new Color(0xFF30B030);
 			int beginIndex = line.indexOf(':'); 
 			int beginIndex2 = line.indexOf(':', beginIndex + 1) + 1; 
 			int endIndex = line.indexOf(' ', beginIndex2);
@@ -71,7 +71,12 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			this.lastBuildModule.setBuildStageText(text);
 			if ("test".equals(text)) {
 				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTING);
+			} else if ("shade".equals(text)) {
+				finishTestingIfTestingStarted();
+			} else {
+				finishTestingIfTestingStarted();
 			}
+			color = new Color(0xFF30B030);
 		} else if (line.startsWith("[INFO] ---")) {
 			color = new Color(0xFF00C000);
 		} else if (line.startsWith("[INFO] Building ")) {
@@ -119,17 +124,26 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 		if (this.lastBuildModule != null) {
 			this.lastBuildModule.setBackground(Color.green);
 			this.lastBuildModule.setBuildStage(buildStage);
-			if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING) {
-				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTED);
-			}
+			finishTestingIfTestingStarted();
 			this.lastBuildModule = null;
+		}
+	}
+
+	private void finishTestingIfTestingStarted() {
+		if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING) {
+			this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTED);
 		}
 	}
 
 	private static void appendToPane(final JTextPane tp, final String msg, final Color c) {
 		final StyleContext sc = StyleContext.getDefaultStyleContext();
-		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
-		aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
+		//AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
+		MutableAttributeSet aset = tp.getInputAttributes();
+		StyleConstants.setForeground(aset, c);
+		//aset = sc.addAttribute(aset, StyleConstants.FontFamily, );
+		
+		//MavenBuildBuddy.gui.preferencesPanel.;
+
 		// aset = sc.addAttribute(aset, StyleConstants.Alignment,
 		// StyleConstants.ALIGN_JUSTIFIED);
 
