@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
@@ -69,7 +70,7 @@ public class PreferencesPanel extends JPanel {
         // should ensure that we do not wipe out any existing attributes
         // (such as alignment or other paragraph attributes) currently
         // set on the text area.
-        MutableAttributeSet attrs = jtp.getInputAttributes();
+        MutableAttributeSet attrs = new SimpleAttributeSet(); // jtp.getInputAttributes();
 
         // Set the font family, size, and style, based on properties of
         // the Font object. Note that JTextPane supports a number of
