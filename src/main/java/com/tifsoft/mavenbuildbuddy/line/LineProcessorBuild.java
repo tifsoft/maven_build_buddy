@@ -77,6 +77,8 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 				finishTestingIfTestingStarted();
 			}
 			color = new Color(0xFF30B030);
+		} else if (line.startsWith("[INFO] Tests are skipped")) {
+			this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_SKIPPED);
 		} else if (line.startsWith("[INFO] ---")) {
 			color = new Color(0xFF00C000);
 		} else if (line.startsWith("[INFO] Building ")) {

@@ -2,7 +2,6 @@ package com.tifsoft.mavenbuildbuddy.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -12,20 +11,43 @@ import java.awt.event.WindowAdapter;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.SizeRequirements;
+import javax.swing.SizeRequirements;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
+import javax.swing.text.Element;
+import javax.swing.text.Element;
+import javax.swing.text.GlyphView;
+import javax.swing.text.GlyphView;
+import javax.swing.text.ParagraphView;
+import javax.swing.text.ParagraphView;
+import javax.swing.text.View;
+import javax.swing.text.View;
+import javax.swing.text.ViewFactory;
+import javax.swing.text.ViewFactory;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.InlineView;
+import javax.swing.text.html.InlineView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,13 +60,17 @@ public class BuildBuddyMainGUI extends JPanel {
 	private static final long serialVersionUID = 1;
 
 	public final ControlButtonsForBuilds controlButtonsForCompleteBuilds = new ControlButtonsForBuilds();
-	public JTextPane textPane = new JTextPane();	
+	public CustomTextPane textPane = new CustomTextPane();	
 	private static final Color BACKGROUND_COLOR = new Color(0xFFF8F8F8);
 	public final JFrame frame = new JFrame("Maven Build Buddy");
 	public OptionsPanel optionsPanel = new OptionsPanel();
 	public JTabbedPane tabbedPaneForPOMs;
+	
+	JPanel noWrapPanel = new JPanel( new BorderLayout() );
+	JScrollPane mainScrollPane = new JScrollPane( noWrapPanel );
 
 	public PreferencesPanel preferencesPanel = new PreferencesPanel();
+
 	//public static final String SHOW_CONSOLE_OUTPUT = "Show console output";
 	static final Logger LOG = LoggerFactory.getLogger(BuildBuddyMainGUI.class);
 
@@ -52,8 +78,6 @@ public class BuildBuddyMainGUI extends JPanel {
 		final JPanel mainTestArray = new JPanel();
 		final JPanel buildArray = new JPanel();
 		final JPanel panelForCustomerDatabase = new JPanel();
-		final JPanel panelForMisc = new JPanel();
-		final JPanel panelForUsers = new JPanel();
 		final JPanel bottomPanel = new JPanel();
 		final JPanel topPanel = new JPanel(new BorderLayout());
 		
@@ -110,9 +134,7 @@ public class BuildBuddyMainGUI extends JPanel {
 		textPane.setForeground(Color.green);
 		textPane.setEditable(false);
 		
-		JPanel noWrapPanel = new JPanel( new BorderLayout() );
 		noWrapPanel.add( textPane );
-		JScrollPane bottomJSP = new JScrollPane( noWrapPanel );
 		
 		//JScrollPane bottomJSP = new JScrollPane(textPane);		
 		textPane.setVisible(true);
@@ -121,7 +143,7 @@ public class BuildBuddyMainGUI extends JPanel {
 		topPanel.add(jsp, BorderLayout.CENTER);
 		topPanel.add(optionsPanel, BorderLayout.SOUTH);
 		//JPanel botPanel = new JPanel();
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomJSP);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, mainScrollPane);
 		splitPane.setDividerLocation(250);
 		splitPane.setOneTouchExpandable(true);
 		this.tabbedPaneForPOMs.addTab("POM", null, splitPane, "Build using Maven");

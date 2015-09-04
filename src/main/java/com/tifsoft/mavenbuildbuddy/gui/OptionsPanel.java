@@ -1,7 +1,5 @@
 package com.tifsoft.mavenbuildbuddy.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +19,7 @@ public class OptionsPanel extends JPanel {
 	public static final JCheckBox CHECKBOX_CLEAN = new JCheckBox("Clean first", true);
 	public static final JCheckBox CHECKBOX_RESUME = new JCheckBox("Resume from", true);
 	public static final JCheckBox CHECKBOX_SKIP_TESTS = new JCheckBox("Skip tests", false);
+	public static final JCheckBox CHECKBOX_WRAP = new JCheckBox("Wrap", false);
 	public static final JButton BUTTON_ABORT = new JButton("Abort");
 	public static final JButton BUTTON_CLEAR = new JButton("Clear");
 
@@ -31,7 +30,24 @@ public class OptionsPanel extends JPanel {
 		add(this.CHECKBOX_SKIP_TESTS);
 		add(this.BUTTON_ABORT);
 		add(this.BUTTON_CLEAR);
+		add(this.CHECKBOX_WRAP);
 //		LOG.info("Create button to kill thread");
+		
+    	ActionListener wwal = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean wrap = !CHECKBOX_WRAP.isSelected();
+				LOG.info("Wrap: " + wrap);
+				BuildBuddyMainGUI gui = MavenBuildBuddy.gui;
+		        if (wrap == true) {
+		            gui.mainScrollPane.setViewportView(gui.noWrapPanel);
+		            gui.noWrapPanel.add(gui.textPane);
+		        } else {
+		            gui.mainScrollPane.setViewportView(gui.textPane);
+		        }
+			}
+		};
+       CHECKBOX_WRAP.addActionListener(wwal);
 		
 		ActionListener alAbort = new ActionListener() {
 			@Override

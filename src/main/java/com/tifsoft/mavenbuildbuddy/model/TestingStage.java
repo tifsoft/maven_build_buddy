@@ -7,7 +7,8 @@ import java.util.List;
 public enum TestingStage {
 	TESTING_STAGE_UNTESTED("Untested", Color.red),
 	TESTING_STAGE_TESTING("Testing", Color.yellow),
-	TESTING_STAGE_TESTED("Tested", Color.green);
+	TESTING_STAGE_TESTED("Tested", Color.green),
+	TESTING_STAGE_SKIPPED("Skipped", Color.gray);
 
 	private String label;
 	private Color color;

@@ -22,27 +22,30 @@ public class MavenBuildBuddy {
 	/*
 	 * ToDo
 	 * ====
+	 * Preferences: Add word-wrap option.
+	 * Button to jump to relevant module.
+	 * Enable and disable main launch buttons according to state.
 	 * Command line - allow POM specification.
-	 * Preferences: Fixed-width font for text output 
-	 * Preferences: Font name, size and Color 
-	 * Preferences: Configurable path to Maven
-	 * Preferences: Word wrap option
-	 * Options panel: mvn command prefix
-	 * Options panel: ignore modules/profiles
-	 * Options panel: "refresh POM" button 
-	 * Support multiple POM files in multiple tabs
-	 * Support multiple profiles in multiple tabs
-	 * Print top summary: command executed
-	 * Display count of warnings and errors in augmented module summary at end
-	 * Better support for Windows
-	 * Put on Tifsoft
-	 * Better multi-tasking for build process (lower priority thread?)
-	 * Create shaded jar file...
-	 * Create archive of build history
-	 * View build history
+	 * Preferences: add new POM.
+	 * Preferences: Configurable path to Maven.
+	 * Options panel: mvn command prefix.
+	 * Options panel: ignore modules/profiles.
+	 * Options panel: "refresh POM" button.
+	 * Support multiple POM files in multiple tabs.
+	 * Support multiple profiles in multiple tabs.
+	 * Print top summary: command executed.
+	 * Display count of warnings and errors in augmented module summary at end.
+	 * Better support for Windows.
+	 * Put on main web site.
+	 * Better multi-tasking for build process (lower priority thread?).
+	 * Create shaded jar file.
+	 * Create archive of build history.
+	 * Visualise build history.
 	 * 
 	 * Done
 	 * ====
+	 * Preferences: Fixed-width font for text output 
+	 * Preferences: Font name, size and Color 
 	 * -Clean project
 	 * -Put on GitHub
 	 * -Options panel: clean / resume
