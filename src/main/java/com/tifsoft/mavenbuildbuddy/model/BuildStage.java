@@ -9,10 +9,10 @@ public enum BuildStage {
 	BUILD_STAGE_COMPILE("Compile", "compile", "Compiled"),
 	BUILD_STAGE_TEST("Test", "test", "Tested"),
 	BUILD_STAGE_PACKAGE("Package", "package", "Packaged"),
-	BUILD_STAGE_INTEGRATION_TEST("Integration", "integration-test", "Integrated"),
+	BUILD_STAGE_INTEGRATION_TEST("ITest", "integration-test", "ITested"),
 	BUILD_STAGE_VERIFY("Verify", "verify", "Verified"),
 	BUILD_STAGE_INSTALL("Install", "install", "Installed"),
-	BUILD_STAGE_DEPLOY("Deploy", "deploy","Deployed");			
+	BUILD_STAGE_DEPLOY("Deploy", "deploy","Deployed");
 
 	private String label;
 	private String action;

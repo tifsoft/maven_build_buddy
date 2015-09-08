@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 import com.tifsoft.mavenbuildbuddy.gui.OptionsPanel;
+import com.tifsoft.mavenbuildbuddy.gui.PreferencesPanel;
 import com.tifsoft.mavenbuildbuddy.line.LineProcessorBuild;
 import com.tifsoft.mavenbuildbuddy.model.BuildModule;
 import com.tifsoft.mavenbuildbuddy.model.BuildPOM;
@@ -31,7 +32,8 @@ public class LaunchBuildProcesses {
 		boolean skipTests = OptionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
 		String actualAction = (clean ? "clean " : "") + buildStage.getAction();
-		String execString = "/usr/local/bin/mvn "+actualAction+" -f "+pathToMainPOMFile+extraOptions+profileSwitch+moduleOption+" "+module;
+		String path = PreferencesPanel.pathToMaven.getText();
+		String execString = path + " " + actualAction + " -f " + pathToMainPOMFile + extraOptions + profileSwitch + moduleOption+" "+module;
 		LOG.info("Exec: " + execString);
 		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
 		//LOG.info("pom: " + pom);

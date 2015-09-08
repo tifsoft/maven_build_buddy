@@ -32,13 +32,13 @@ import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
 public class ControlButtonsForBuilds {
 	static final Logger LOG = LoggerFactory.getLogger(ControlButtonsForBuilds.class.getName());
 	
-	public static JScrollPane setUp(JPanel buildArray) {		
+	public static JScrollPane setUp(JPanel buildArray, String path) {		
 		JScrollPane jsp = new JScrollPane(); 
 		buildArray.setLayout(new GridBagLayout());
 		GridBagConstraints con = new GridBagConstraints();
 		BuildPOM buildPOM = null;
 		try {
-			buildPOM = BuildPOMContentsLister.parsePOM();
+			buildPOM = BuildPOMContentsLister.parsePOM(path);
 			MavenBuildBuddy.pomMap.put(BuildPOM.DEFAULT_POM, buildPOM);
 			for (BuildProfile buildProfile : buildPOM.profileList.values()) {
 				con.gridx = 0;

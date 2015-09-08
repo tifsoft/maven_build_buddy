@@ -20,7 +20,7 @@ public class BuildPOMContentsLister {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		//BuildPOM buildPOM = MavenBuildBuddy.pomMap.get("DefaultPOM");
-		BuildPOM buildPOM = parsePOM();
+		BuildPOM buildPOM = parsePOM("../pom.xml");
 		//LOGGER.info("List size: " + profileList.size());
 		for (BuildProfile buildProfile : buildPOM.profileList.values()) {
 			LOG.info("Profile: " + buildProfile.getName());
@@ -30,8 +30,8 @@ public class BuildPOMContentsLister {
 		}
 	}
 
-	public static BuildPOM parsePOM() throws ParserConfigurationException, SAXException, IOException {
-		String path = "../" + "pom.xml";
+	public static BuildPOM parsePOM(String path) throws ParserConfigurationException, SAXException, IOException {
+//		String path = ;
 		//Logger.
 		BuildXMLHandler handler = new BuildXMLHandler();
 		BuildXMLProcessor.executeFile(path, handler);

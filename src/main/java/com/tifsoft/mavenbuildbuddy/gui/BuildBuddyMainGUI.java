@@ -65,6 +65,10 @@ public class BuildBuddyMainGUI extends JPanel {
 	public final JFrame frame = new JFrame("Maven Build Buddy");
 	public OptionsPanel optionsPanel = new OptionsPanel();
 	public JTabbedPane tabbedPaneForPOMs;
+	public JSplitPane splitPane;
+
+	final JPanel topPanel = new JPanel(new BorderLayout());
+	final JPanel buildArray = new JPanel();
 	
 	JPanel noWrapPanel = new JPanel( new BorderLayout() );
 	JScrollPane mainScrollPane = new JScrollPane( noWrapPanel );
@@ -76,10 +80,8 @@ public class BuildBuddyMainGUI extends JPanel {
 
 	public void setUpGUI() {
 		final JPanel mainTestArray = new JPanel();
-		final JPanel buildArray = new JPanel();
 		final JPanel panelForCustomerDatabase = new JPanel();
 		final JPanel bottomPanel = new JPanel();
-		final JPanel topPanel = new JPanel(new BorderLayout());
 		
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
 		final JPanel panelMainCenter = new JPanel();
@@ -136,16 +138,15 @@ public class BuildBuddyMainGUI extends JPanel {
 		
 		noWrapPanel.add( textPane );
 		
-		//JScrollPane bottomJSP = new JScrollPane(textPane);		
 		textPane.setVisible(true);
-		JScrollPane jsp = ControlButtonsForBuilds.setUp(buildArray);
-		
-		topPanel.add(jsp, BorderLayout.CENTER);
-		topPanel.add(optionsPanel, BorderLayout.SOUTH);
-		//JPanel botPanel = new JPanel();
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, mainScrollPane);
+		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new JLabel("temp"), mainScrollPane);
+		splitPane.setBackground(Color.darkGray);
+
+		String path = PreferencesPanel.POM_PATH_TEXTFIELD.getText();
+		makeNewPom(path);
 		splitPane.setDividerLocation(250);
 		splitPane.setOneTouchExpandable(true);
+		splitPane.setContinuousLayout(true);
 		this.tabbedPaneForPOMs.addTab("POM", null, splitPane, "Build using Maven");
 		this.tabbedPaneForPOMs.addTab("Preferences", null, this.preferencesPanel , "Preferences");
 		this.add(this.tabbedPaneForPOMs,BorderLayout.CENTER);
@@ -153,6 +154,15 @@ public class BuildBuddyMainGUI extends JPanel {
 		this.tabbedPaneForPOMs.setVisible(true);
 		this.validate();
 		this.setVisible(true);
+	}
+
+	public void makeNewPom(String path) {
+		buildArray.removeAll(); // ToDo - rethink this...
+		topPanel.removeAll(); // ToDo - rethink this...
+		JScrollPane jsp = ControlButtonsForBuilds.setUp(buildArray, path);
+		this.topPanel.add(jsp, BorderLayout.CENTER);
+		this.topPanel.add(this.optionsPanel, BorderLayout.SOUTH);
+		this.splitPane.setTopComponent(this.topPanel);
 	}
 	
 	public static TitledBorder createTitledBorder(String title) {
