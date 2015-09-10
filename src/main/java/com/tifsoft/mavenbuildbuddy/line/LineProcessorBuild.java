@@ -62,6 +62,27 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			if (lastBuildModule != null) {
 				lastBuildModule.setErrorCount(lastBuildModule.getErrorCount() + 1);
 			}
+		} else if (line.startsWith("Tests run: ")) {
+			if (line.contains("Time elapsed")) {
+				if (lastBuildModule != null) {
+					this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTING_FINISHED);
+					int indexOfCommaTotal = line.indexOf(",");
+					int total = Integer.parseInt(line.substring(11, indexOfCommaTotal));
+					this.lastBuildModule.getLabelTotal().setText(" " + total);
+					int indexOfFailures = line.indexOf("Failures");
+					int indexOfFailuresComma= line.indexOf(",", indexOfFailures);
+					int failures = Integer.parseInt(line.substring(indexOfFailures + 10, indexOfFailuresComma));
+					this.lastBuildModule.getLabelFail().setText(" " + failures);
+					int indexOfErrors = line.indexOf("Errors");
+					int indexOfErrorsComma = line.indexOf(",", indexOfErrors);
+					int errors = Integer.parseInt(line.substring(indexOfErrors + 8, indexOfErrorsComma));
+					this.lastBuildModule.getLabelErrors().setText(" " + errors);
+					int indexOfSkipped = line.indexOf("Skipped");
+					int indexOfSkippedComma = line.indexOf(",", indexOfSkipped);
+					int skipped = Integer.parseInt(line.substring(indexOfSkipped + 9, indexOfSkippedComma));
+					this.lastBuildModule.getLabelSkip().setText(" " + skipped);
+				}
+			}
 		} else if (line.startsWith("[INFO] --- maven-")) {
 			int beginIndex = line.indexOf(':'); 
 			int beginIndex2 = line.indexOf(':', beginIndex + 1) + 1; 
@@ -70,9 +91,9 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 			//LOG.info(MBBMarkers.MBB, "***** Found "+text+"*******");
 			this.lastBuildModule.setBuildStageText(text);
 			if ("test".equals(text)) {
-				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTING);
-			} else if ("shade".equals(text)) {
-				finishTestingIfTestingStarted();
+				this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTING_STARTED);
+			//} else if ("shade".equals(text)) {
+				//finishTestingIfTestingStarted();
 			} else {
 				finishTestingIfTestingStarted();
 			}
@@ -132,8 +153,10 @@ public class LineProcessorBuild extends LineProcessorBaseClass {
 	}
 
 	private void finishTestingIfTestingStarted() {
-		if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING) {
+		if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING_FINISHED) {
 			this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_TESTED);
+		} else if (this.lastBuildModule.getTestingStage() == TestingStage.TESTING_STAGE_TESTING_STARTED) {
+			this.lastBuildModule.setTestingStage(TestingStage.TESTING_STAGE_NO_TESTS_FOUND);
 		}
 	}
 

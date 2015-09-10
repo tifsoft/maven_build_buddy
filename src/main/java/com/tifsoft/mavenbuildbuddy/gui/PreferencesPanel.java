@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.tifsoft.mavenbuildbuddy.MavenBuildBuddy;
 
 public class PreferencesPanel extends JPanel {
-	public static final JTextField POM_PATH_TEXTFIELD = new JTextField("../" + "pom.xml",50);
+	public static final JTextField POM_PATH_TEXTFIELD = new JTextField("../PS/knowledgeHub/" + "pom.xml",50);
 	private static final long serialVersionUID = 1L;
 	static final Logger LOG = LoggerFactory.getLogger(PreferencesPanel.class);
 	

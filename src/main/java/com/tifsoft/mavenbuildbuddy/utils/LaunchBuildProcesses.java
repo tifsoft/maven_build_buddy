@@ -31,6 +31,8 @@ public class LaunchBuildProcesses {
 		String profileSwitch = profile.equals(DEFAULT_PROFILE) ? "" : " -P " + profile;
 		boolean skipTests = OptionsPanel.CHECKBOX_SKIP_TESTS.isSelected();
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
+		extraOptions += OptionsPanel.CHECKBOX_QUIET.isSelected() ? " -q" : "";
+		extraOptions += OptionsPanel.CHECKBOX_VERBOSE.isSelected() ? " -X" : "";
 		String actualAction = (clean ? "clean " : "") + buildStage.getAction();
 		String path = PreferencesPanel.pathToMaven.getText();
 		String execString = path + " " + actualAction + " -f " + pathToMainPOMFile + extraOptions + profileSwitch + moduleOption+" "+module;

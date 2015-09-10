@@ -19,6 +19,11 @@ public class BuildModule {
 	int errorCount;
 
 	private TestingStage testingStage;
+
+	private JLabel labelSkip;
+	private JLabel labelFail;
+	private JLabel labelErrors;
+	private JLabel labelTotal;
 	
 	public BuildModule(final String name) {
 		super();
@@ -113,6 +118,38 @@ public class BuildModule {
 	}
 
 	public TestingStage getTestingStage() {
-		return testingStage;
+		return this.testingStage;
+	}
+
+	public void setLabelSkip(JLabel labelSkip) {
+		this.labelSkip = labelSkip;
+	}
+
+	public void setLabelFail(JLabel labelFail) {
+		this.labelFail = labelFail;
+	}
+
+	public void setLabelTotal(JLabel labelTotal) {
+		this.labelTotal = labelTotal;
+	}
+	
+	public void setLabelErrors(JLabel labelErrors) {
+		this.labelErrors = labelErrors;
+	}
+
+	public JLabel getLabelSkip() {
+		return labelSkip;
+	}
+
+	public JLabel getLabelFail() {
+		return labelFail;
+	}
+
+	public JLabel getLabelTotal() {
+		return labelTotal;
+	}
+	
+	public JLabel getLabelErrors() {
+		return labelErrors;
 	}
 }

@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum TestingStage {
-	TESTING_STAGE_UNTESTED("Untested", Color.red),
-	TESTING_STAGE_TESTING("Testing", Color.yellow),
-	TESTING_STAGE_TESTED("Tested", Color.green),
-	TESTING_STAGE_SKIPPED("Skipped", Color.gray);
+	TESTING_STAGE_UNTESTED("Not run", Color.red),
+	TESTING_STAGE_TESTING_STARTED("Running", Color.yellow),
+	TESTING_STAGE_TESTING_FINISHED("Finished", Color.blue),
+	TESTING_STAGE_TESTED("Success", Color.green),
+	TESTING_STAGE_FAILURE("Failure", Color.green),
+	TESTING_STAGE_SKIPPED("Skipped", Color.gray),
+	TESTING_STAGE_NO_TESTS_FOUND("Not found", Color.magenta);
 
 	private String label;
 	private Color color;

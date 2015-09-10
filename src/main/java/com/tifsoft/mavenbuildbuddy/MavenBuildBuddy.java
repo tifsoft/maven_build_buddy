@@ -22,22 +22,23 @@ public class MavenBuildBuddy {
 	/*
 	 * ToDo
 	 * ====
-	 * Preferences: Configurable path to Maven.
-	 * Preferences: Add new POM.
-	 * Design cool dock icon for OSX users.
-	 * Command line - allow POM specification.
-	 * Add persistent per-section colors.
-	 * Button to jump to relevant module.
+	 * Add new POM should open in a separate tab.
 	 * Enable and disable main launch buttons according to state.
-	 * Options panel: mvn command prefix.
-	 * Options panel: ignore modules/profiles.
-	 * Options panel: "refresh POM" button.
+	 * Bar-graph style display based on highlighting buttons.
+	 * Options: Close POM tab button.
+	 * Command line - allow POM specification?
+	 * Add persistent per-section colors.
+	 * Button to jump to relevant module in text output.
+	 * Auto-set-up path to maven from PATH env variable.
+	 * Options: mvn command prefix.
+	 * Options: ignore modules/profiles.
+	 * Options: "refresh POM" button.
 	 * Support multiple POM files in multiple tabs.
 	 * Support multiple profiles in multiple tabs.
 	 * Print top summary: command executed.
 	 * Display count of warnings and errors in 'augmented' module summary at end.
 	 * Better support for Windows.
-	 * OSX - include task bar icon and instructions.
+	 * OSX - include task bar icon - and instructions.
 	 * Put on main web site.
 	 * Preferences: Allow color configuration.
 	 * Preferences: Add default for word-wrap option.
@@ -51,6 +52,9 @@ public class MavenBuildBuddy {
 	 * 
 	 * Done
 	 * ====
+	 * -Indicate test results.
+	 * -Detect and indicate 'no tests' state.: "Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.841 sec"
+	 * -Design cool dock icon for OSX users.
 	 * -Preferences: Fixed-width font for text output 
 	 * -Preferences: Font name, size and Color 
 	 * -Clean project

@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="maven_build_buddy.svg">
+   sodipodi:docname="maven_build_buddy.svg"
+   inkscape:export-filename="/Users/timtyler/maven_build_buddy/src/main/resources/maven_build_buddy.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,13 +29,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5329593"
-     inkscape:cx="266.33331"
-     inkscape:cy="876.27983"
+     inkscape:cx="264.51648"
+     inkscape:cy="855.5576"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1440"
-     inkscape:window-height="771"
+     inkscape:window-height="768"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -44,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,49 +56,51 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#f9f9f9;fill-rule:evenodd;stroke:#000000;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 172.21593,154.0996 c -30.72738,-21.13248 -9.35508,-90.030237 32.61665,-78.279969 -14.02793,-47.463145 70.66487,-77.9056551 95.24063,-45.663313 12.45738,-28.3831734 65.46576,-32.7987217 76.32297,3.261665 25.97437,-27.2786407 80.77638,1.651301 67.19029,37.182984 42.20692,-14.291931 71.54031,47.401603 39.13998,76.975293 29.42091,14.60568 25.96113,55.74606 -5.87099,63.92865 28.66388,16.33606 8.67126,122.60527 -31.96432,106.33028 4.27737,37.59595 -38.27748,45.71883 -69.79964,20.22233 -10.24646,41.63818 -97.48033,29.8335 -100.45929,-6.52333 -33.65004,27.0785 -85.87847,8.45831 -74.36597,-26.09332 -40.28196,10.04099 -63.54418,-55.30947 -23.48399,-73.71365 -35.76775,-9.74813 -39.13199,-71.31907 -4.56632,-77.62762 z"
+       style="fill:#cccccc;fill-rule:evenodd;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 174.17293,153.44727 c -30.72738,-21.13248 1.08225,-108.947898 43.05398,-97.19763 2.28039,-38.982816 73.92653,-40.722672 83.49863,-11.741995 12.45738,-28.383174 65.46576,-35.408054 76.32297,0.652333 25.97437,-27.278641 80.12405,-10.090694 66.53796,25.440989 42.20692,-14.291931 71.54031,47.401603 39.13998,76.975293 24.20225,15.25801 24.65646,67.48805 -3.26166,79.58464 42.36288,20.90239 -8.94173,117.38661 -49.57731,101.11162 -10.07396,31.72495 -43.49614,33.97683 -75.0183,8.48033 -11.55113,29.24386 -63.55902,23.96251 -80.23697,-5.21866 -33.65004,27.0785 -76.74581,21.50497 -76.32297,-18.26532 -40.28196,10.04099 -61.58718,-63.13747 -21.52699,-81.54165 -35.76775,-9.74813 -37.17499,-71.9714 -2.60932,-78.27995 z"
        id="path3336"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccc" />
+       sodipodi:nodetypes="ccccccccccccc"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:83.33804321px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="195.51295"
-       y="135.61378"
+       x="196.8994"
+       y="134.99992"
        id="text4138"
        sodipodi:linespacing="125%"
        transform="scale(0.94101776,1.0626792)"><tspan
          sodipodi:role="line"
          id="tspan4140"
-         x="195.51295"
-         y="135.61378"
-         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">maven</tspan></text>
+         x="196.8994"
+         y="134.99992"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">Maven</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:81.89916992px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="178.38817"
-       y="236.30438"
+       style="font-style:normal;font-weight:normal;font-size:89.45436096px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="192.26094"
+       y="222.07115"
        id="text4184"
        sodipodi:linespacing="125%"
-       transform="scale(1.1031643,0.90648329)"><tspan
+       transform="scale(1.0099925,0.99010635)"><tspan
          sodipodi:role="line"
-         x="178.38817"
-         y="236.30438"
+         x="192.26094"
+         y="222.07115"
          id="tspan4188"
-         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">build</tspan></text>
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">Build</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:77.36856842px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="183.11159"
-       y="294.87796"
+       style="font-style:normal;font-weight:normal;font-size:83.79701996px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="182.49069"
+       y="289.73825"
        id="text4192"
        sodipodi:linespacing="125%"
-       transform="scale(1.0363562,0.96491921)"><tspan
+       transform="scale(0.98952271,1.0105882)"><tspan
          sodipodi:role="line"
          id="tspan4194"
-         x="183.11159"
-         y="294.87796"
-         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">buddy</tspan></text>
+         x="182.49069"
+         y="289.73825"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'">Buddy</tspan></text>
   </g>
 </svg>

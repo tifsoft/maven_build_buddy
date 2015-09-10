@@ -101,6 +101,30 @@ public class ControlButtonsForBuilds {
 					//module.showWarningCounts();
 					con.gridx++;
 
+					JLabel labelTotal = new JLabel(" -",SwingConstants.CENTER);
+					module.setLabelTotal(labelTotal);
+					labelTotal.setOpaque(true);
+					buildArray.add(labelTotal, con);
+					con.gridx++;
+
+					JLabel labelFail = new JLabel(" -",SwingConstants.CENTER);
+					module.setLabelFail(labelFail);
+					labelFail.setOpaque(true);
+					buildArray.add(labelFail, con);
+					con.gridx++;
+
+					JLabel labelErrors = new JLabel(" -",SwingConstants.CENTER);
+					module.setLabelErrors(labelErrors);
+					labelErrors.setOpaque(true);
+					buildArray.add(labelErrors, con);
+					con.gridx++;
+
+					JLabel labelSkip = new JLabel(" -",SwingConstants.CENTER);
+					module.setLabelSkip(labelSkip);
+					labelSkip.setOpaque(true);
+					buildArray.add(labelSkip, con);
+					con.gridx++;
+
 					for (BuildStage bs : BuildStage.set) {
 						addBuildLifecycleButton(buildArray, con, profile, processedModule, bs);						
 					}

@@ -48,6 +48,10 @@ public class BuildProfile {
 				thisBuildModule.setBackground(Color.red);
 				thisBuildModule.setBuildStage(BuildStage.BUILD_STAGE_CLEAN);
 				thisBuildModule.setTestingStage(TestingStage.TESTING_STAGE_UNTESTED);
+				thisBuildModule.getLabelTotal().setText(" -");
+				thisBuildModule.getLabelErrors().setText(" -");
+				thisBuildModule.getLabelFail().setText(" -");
+				thisBuildModule.getLabelSkip().setText(" -");
 			}
 			if (!resume) {
 				scrubbing = false;

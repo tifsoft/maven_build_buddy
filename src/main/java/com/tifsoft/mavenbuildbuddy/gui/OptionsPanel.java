@@ -20,6 +20,8 @@ public class OptionsPanel extends JPanel {
 	public static final JCheckBox CHECKBOX_RESUME = new JCheckBox("Resume from", true);
 	public static final JCheckBox CHECKBOX_SKIP_TESTS = new JCheckBox("Skip tests", false);
 	public static final JCheckBox CHECKBOX_WRAP = new JCheckBox("Wrap", false);
+	public static final JCheckBox CHECKBOX_QUIET = new JCheckBox("Quiet", false);
+	public static final JCheckBox CHECKBOX_VERBOSE = new JCheckBox("Verbose", false);
 	public static final JButton BUTTON_ABORT = new JButton("Abort");
 	public static final JButton BUTTON_CLEAR = new JButton("Clear");
 
@@ -28,6 +30,8 @@ public class OptionsPanel extends JPanel {
 		add(this.CHECKBOX_CLEAN);
 		add(this.CHECKBOX_RESUME);
 		add(this.CHECKBOX_SKIP_TESTS);
+		add(this.CHECKBOX_VERBOSE);
+		add(this.CHECKBOX_QUIET);
 		add(this.BUTTON_ABORT);
 		add(this.BUTTON_CLEAR);
 		add(this.CHECKBOX_WRAP);

@@ -5,10 +5,10 @@ import java.util.List;
 
 public enum BuildStage {
 	BUILD_STAGE_CLEAN("Clean", "clean", "Cleaned"),
-	BUILD_STAGE_VALIDATE("Validate", "validate","Validated"),
+	BUILD_STAGE_VALIDATE("Check", "validate","Validated"),
 	BUILD_STAGE_COMPILE("Compile", "compile", "Compiled"),
 	BUILD_STAGE_TEST("Test", "test", "Tested"),
-	BUILD_STAGE_PACKAGE("Package", "package", "Packaged"),
+	BUILD_STAGE_PACKAGE("Pack", "package", "Packaged"),
 	BUILD_STAGE_INTEGRATION_TEST("ITest", "integration-test", "ITested"),
 	BUILD_STAGE_VERIFY("Verify", "verify", "Verified"),
 	BUILD_STAGE_INSTALL("Install", "install", "Installed"),
