@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -174,13 +175,17 @@ public class ControlButtonsForBuilds {
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String title = "Incremental build of profile <"+ActionSettings.this.profile+"> starting from module <"+ActionSettings.this.module+">";
-					LOG.info(MBBMarkers.BUILD, title);
-					boolean resume = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_RESUME.isSelected();
-					boolean clean = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_CLEAN.isSelected();
-					//String actualAction = (clean ? "clean " : "") + ActionSettings.this.actionForMaven;
-					BuildStage buildStage = ActionSettings.this.buildStage;
-					LaunchBuildProcesses.mvnExecute(title, buildStage, ActionSettings.this.profile, ActionSettings.this.module, clean, resume);
+					if (!OptionsPanel.building) {
+						String title = "Incremental build of profile <"+ActionSettings.this.profile+"> starting from module <"+ActionSettings.this.module+">";
+						LOG.info(MBBMarkers.BUILD, title);
+						boolean resume = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_RESUME.isSelected();
+						boolean clean = MavenBuildBuddy.gui.optionsPanel.CHECKBOX_CLEAN.isSelected();
+						//String actualAction = (clean ? "clean " : "") + ActionSettings.this.actionForMaven;
+						BuildStage buildStage = ActionSettings.this.buildStage;
+						LaunchBuildProcesses.mvnExecute(title, buildStage, ActionSettings.this.profile, ActionSettings.this.module, clean, resume);
+					} else {
+						JOptionPane.showMessageDialog(null, "Build in progress - and concurrent builds are prohibited");
+					}
 				}
 			});										
 		}

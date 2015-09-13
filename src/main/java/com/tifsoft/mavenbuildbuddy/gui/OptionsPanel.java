@@ -24,25 +24,26 @@ public class OptionsPanel extends JPanel {
 	public static final JCheckBox CHECKBOX_VERBOSE = new JCheckBox("Verbose", false);
 	public static final JButton BUTTON_ABORT = new JButton("Abort");
 	public static final JButton BUTTON_CLEAR = new JButton("Clear");
+	public static boolean building = false;
 
 	public OptionsPanel() {
 		super();
-		add(this.CHECKBOX_CLEAN);
-		add(this.CHECKBOX_RESUME);
-		add(this.CHECKBOX_SKIP_TESTS);
-		add(this.CHECKBOX_VERBOSE);
-		add(this.CHECKBOX_QUIET);
-		add(this.BUTTON_ABORT);
-		add(this.BUTTON_CLEAR);
-		add(this.CHECKBOX_WRAP);
+		add(OptionsPanel.CHECKBOX_CLEAN);
+		add(OptionsPanel.CHECKBOX_RESUME);
+		add(OptionsPanel.CHECKBOX_SKIP_TESTS);
+		add(OptionsPanel.CHECKBOX_VERBOSE);
+		add(OptionsPanel.CHECKBOX_QUIET);
+		add(OptionsPanel.BUTTON_ABORT);
+		add(OptionsPanel.BUTTON_CLEAR);
+		add(OptionsPanel.CHECKBOX_WRAP);
 //		LOG.info("Create button to kill thread");
 		
-    	ActionListener wwal = new ActionListener() {
+    	final ActionListener wwal = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				boolean wrap = !CHECKBOX_WRAP.isSelected();
+			public void actionPerformed(final ActionEvent e) {
+				final boolean wrap = !CHECKBOX_WRAP.isSelected();
 				LOG.info("Wrap: " + wrap);
-				BuildBuddyMainGUI gui = MavenBuildBuddy.gui;
+				final BuildBuddyMainGUI gui = MavenBuildBuddy.gui;
 		        if (wrap == true) {
 		            gui.mainScrollPane.setViewportView(gui.noWrapPanel);
 		            gui.noWrapPanel.add(gui.textPane);
@@ -53,9 +54,9 @@ public class OptionsPanel extends JPanel {
 		};
        CHECKBOX_WRAP.addActionListener(wwal);
 		
-		ActionListener alAbort = new ActionListener() {
+		final ActionListener alAbort = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				LOG.info("Kill thread");
 				LaunchBuildProcesses.executionClientThread.close();
 				enableLaunchActions();
@@ -64,9 +65,9 @@ public class OptionsPanel extends JPanel {
 		BUTTON_ABORT.addActionListener(alAbort);
 		BUTTON_ABORT.setEnabled(false);
 
-		ActionListener alClear = new ActionListener() {
+		final ActionListener alClear = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				LOG.info("Clear");
 				MavenBuildBuddy.gui.textPane.setText("");
 			}
@@ -76,11 +77,13 @@ public class OptionsPanel extends JPanel {
 	
 	public static void disableLaunchActions() {
 		BUTTON_ABORT.setEnabled(true);
+		building = true;
 		SystemTrayIcon.setBusy();
 	}
 	
 	public static void enableLaunchActions() {
 		BUTTON_ABORT.setEnabled(false);
+		building = false;
 		SystemTrayIcon.setOK();
 	}
 }
