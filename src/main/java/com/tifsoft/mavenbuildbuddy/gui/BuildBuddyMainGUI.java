@@ -79,6 +79,7 @@ public class BuildBuddyMainGUI extends JPanel {
 	static final Logger LOG = LoggerFactory.getLogger(BuildBuddyMainGUI.class);
 
 	public void setUpGUI() {
+		SystemTrayIcon.createAndShowGUI();
 		final JPanel mainTestArray = new JPanel();
 		final JPanel panelForCustomerDatabase = new JPanel();
 		final JPanel bottomPanel = new JPanel();

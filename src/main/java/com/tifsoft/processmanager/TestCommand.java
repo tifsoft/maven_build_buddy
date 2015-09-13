@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tifsoft.mavenbuildbuddy.utils.MBBMarkers;
+import com.tifsoft.mavenbuildbuddy.utils.SimpleEvent;
 
 public class TestCommand implements Closeable {
 	private static int threadSleepDelay = 2000;
@@ -22,19 +23,16 @@ public class TestCommand implements Closeable {
 
 	LineProcessorLogger logger = string -> LOG.info(MBBMarkers.EXECUTE, string);
 
-	public ArrayList<String> testCommand(final LineProcessor processor, final String command) {
+	public ArrayList<String> testCommand(final LineProcessor processor, final SimpleEvent event, final String command) {
 		final String[] commands = command.split(" ");
-		return testCommand(processor, commands);
+		return testCommand(processor, event, commands);
 	}
 
-	public ArrayList<String> testCommand(final LineProcessor processor, final String... commands) {
-		// LOG.info(PMMarkers.EXECUTE, "Executing the script using args: " +
-		// Arrays.toString(commands));
+	public ArrayList<String> testCommand(final LineProcessor processor, final SimpleEvent event, final String... commands) {
 		final ArrayList<String> resultsList = null;
 		StreamGobbler outputGobbler = null;
 		StreamGobbler errorGobbler = null;
 		//OutputStream keycommands = null;
-
 		// final long t1 = System.currentTimeMillis();
 		// final StringBuilder sb = new StringBuilder("");
 		try {
@@ -106,9 +104,6 @@ public class TestCommand implements Closeable {
 						throw new InterruptedException(message);
 					}
 				}
-	
-				// processor.exit();
-	
 				return resultsList;
 			}
 		} catch (final Throwable t) {
@@ -121,6 +116,7 @@ public class TestCommand implements Closeable {
 			if (outputGobbler != null) {
 				outputGobbler.close();
 			}
+			event.simpleEvent();
 		}
 
 		// processor.exit();

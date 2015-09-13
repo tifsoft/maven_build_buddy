@@ -58,7 +58,7 @@ public class OptionsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				LOG.info("Kill thread");
 				LaunchBuildProcesses.executionClientThread.close();
-				BUTTON_ABORT.setEnabled(false);
+				enableLaunchActions();
 			}
 		};
 		BUTTON_ABORT.addActionListener(alAbort);
@@ -72,5 +72,15 @@ public class OptionsPanel extends JPanel {
 			}
 		};
 		BUTTON_CLEAR.addActionListener(alClear);
+	}
+	
+	public static void disableLaunchActions() {
+		BUTTON_ABORT.setEnabled(true);
+		SystemTrayIcon.setBusy();
+	}
+	
+	public static void enableLaunchActions() {
+		BUTTON_ABORT.setEnabled(false);
+		SystemTrayIcon.setOK();
 	}
 }

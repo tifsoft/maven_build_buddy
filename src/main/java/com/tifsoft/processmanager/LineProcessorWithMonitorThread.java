@@ -3,6 +3,9 @@ package com.tifsoft.processmanager;
 import java.io.Closeable;
 import java.util.ArrayList;
 
+import com.tifsoft.mavenbuildbuddy.gui.OptionsPanel;
+import com.tifsoft.mavenbuildbuddy.utils.SimpleEvent;
+
 /* A monitoring thread for each line processor (thread may not really be needed)
  * Also groups the lineProcessor and its associated process together */
 public class LineProcessorWithMonitorThread extends Thread implements Closeable {
@@ -30,7 +33,14 @@ public class LineProcessorWithMonitorThread extends Thread implements Closeable 
 		this.testCommand = new TestCommand();
 		this.testCommand.setKeyPressRegularly(false);
 		//LOG.info(PMMarkers.EXECUTE, "Script execution started");
-		final ArrayList<String> out = this.testCommand.testCommand(this.lineProcessor, this.exec);
+		SimpleEvent event = new SimpleEvent() {
+			@Override
+			public void simpleEvent() {
+				OptionsPanel.enableLaunchActions();
+			}			
+		};
+
+		final ArrayList<String> out = this.testCommand.testCommand(this.lineProcessor, event, this.exec);
 		// LOG.info("Script execution ended");
 
 		if (out == null) {

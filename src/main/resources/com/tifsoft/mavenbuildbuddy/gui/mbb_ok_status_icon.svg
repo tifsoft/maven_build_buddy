@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="mbb_ok_status_icon.svg"
+   inkscape:export-filename="/Users/timtyler/maven_build_buddy/src/main/resources/com/tifsoft/mavenbuildbuddy/gui/mbb_ok_status_icon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.5057778"
+     inkscape:cx="252.87234"
+     inkscape:cy="919.68579"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1288"
+     inkscape:window-height="686"
+     inkscape:window-x="129"
+     inkscape:window-y="53"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Lucida Grande';-inkscape-font-specification:'Lucida Grande Medium';letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="58.22987"
+       y="88.751808"
+       id="text4136"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="58.22987"
+         y="88.751808"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Lucida Grande';-inkscape-font-specification:'Lucida Grande Semi-Bold';fill:#f9f9f9;">MBB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:500;font-size:40px;line-height:125%;font-family:'Lucida Grande';letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Lucida Grande Medium';font-stretch:normal;font-variant:normal;"
+       x="68.560974"
+       y="126.31947"
+       id="text4140"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4142"
+         x="68.560974"
+         y="126.31947"
+         style="-inkscape-font-specification:'Lucida Grande Semi-Bold';font-family:'Lucida Grande';font-weight:600;font-style:normal;font-stretch:normal;font-variant:normal;fill:#f9f9f9;">OK</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4144"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4146"><rect
+           id="rect4148"
+           width="0.9391914"
+           height="82.648842"
+           x="121.15569"
+           y="74.66394" /></flowRegion><flowPara
+         id="flowPara4150"></flowPara></flowRoot>  </g>
+</svg>
