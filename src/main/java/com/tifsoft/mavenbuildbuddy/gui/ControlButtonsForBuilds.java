@@ -41,12 +41,12 @@ public class ControlButtonsForBuilds {
 		try {
 			buildPOM = BuildPOMContentsLister.parsePOM(path);
 			MavenBuildBuddy.pomMap.put(BuildPOM.DEFAULT_POM, buildPOM);
-			for (BuildProfile buildProfile : buildPOM.profileList.values()) {
+			for (BuildProfile buildProfile : buildPOM.profileList) {
 				con.gridx = 0;
 				con.gridy++;
 				con.anchor = GridBagConstraints.CENTER;
 				con.fill = GridBagConstraints.HORIZONTAL;
-				con.gridwidth = 8; //GridBagConstraints.REMAINDER;
+				con.gridwidth = 20; //GridBagConstraints.REMAINDER;
 				con.ipady = 10;
 				final String profile = buildProfile.getName();
 				JLabel labelProfile = new JLabel(profile,SwingConstants.CENTER);

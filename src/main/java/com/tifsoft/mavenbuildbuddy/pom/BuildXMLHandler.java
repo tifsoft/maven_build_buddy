@@ -32,7 +32,8 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 		if (this.type != null) {
 			switch (this.type) {
 				case ID:
-					storeProfile(string);
+					
+					buildNewProfile(string);
 					break;
 				case MODULE:
 					//System.out.println("Module: " + string);
@@ -45,11 +46,14 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 		}
 	}
 
-	private void storeProfile(String newBuildProfile) {
-		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
-		pom.profileList.put(this.currentBuildProfile.getName(), this.currentBuildProfile);
+	private void buildNewProfile(String newBuildProfile) {
 		this.currentBuildProfile = new BuildProfile(newBuildProfile);
 		this.type = null;
+	}
+
+	private void storeProfile() {
+		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
+		pom.profileList.add(this.currentBuildProfile);
 	}
 
 	@Override
@@ -69,8 +73,10 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 	}
 
 	@Override
-    public void endElement (String uri, String localName, String qName) throws SAXException {
-		//...
+    public void endElement (String uri, String localName, String name) throws SAXException {
+		if ("profile".equalsIgnoreCase(name)) {
+			storeProfile();
+		}
 	}
 
 	/** This method is called when warnings occur */
@@ -104,7 +110,7 @@ public class BuildXMLHandler extends BuildXMLHandlerBase {
 
 		if (pom.profileList.size() == 0) {
 			LOG.info("Set up profile: " + this.currentBuildProfile);
-			this.storeProfile("XYZZY");
+			this.storeProfile();
 		}
 	}
 }

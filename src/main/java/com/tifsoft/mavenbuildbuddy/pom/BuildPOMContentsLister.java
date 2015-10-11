@@ -22,7 +22,7 @@ public class BuildPOMContentsLister {
 		//BuildPOM buildPOM = MavenBuildBuddy.pomMap.get("DefaultPOM");
 		BuildPOM buildPOM = parsePOM("../pom.xml");
 		//LOGGER.info("List size: " + profileList.size());
-		for (BuildProfile buildProfile : buildPOM.profileList.values()) {
+		for (BuildProfile buildProfile : buildPOM.profileList) {
 			LOG.info("Profile: " + buildProfile.getName());
 			for (BuildModule module : buildProfile.moduleList) {
 				LOG.info("Module: " + module.getName());				

@@ -33,6 +33,7 @@ public class LaunchBuildProcesses {
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
 		extraOptions += OptionsPanel.CHECKBOX_QUIET.isSelected() ? " -q" : "";
 		extraOptions += OptionsPanel.CHECKBOX_VERBOSE.isSelected() ? " -X" : "";
+		extraOptions += OptionsPanel.CHECKBOX_OFFLINE.isSelected() ? " -o" : "";		
 		String actualAction = (clean ? "clean " : "") + buildStage.getAction();
 		String path = PreferencesPanel.pathToMaven.getText();
 		String execString = path + " " + actualAction + " -f " + pathToMainPOMFile + extraOptions + profileSwitch + moduleOption+" "+module;
@@ -40,7 +41,7 @@ public class LaunchBuildProcesses {
 		BuildPOM pom = MavenBuildBuddy.pomMap.get(BuildPOM.DEFAULT_POM);
 		//LOG.info("pom: " + pom);
 		//LOG.info("looking for: " + profile);
-		BuildProfile buildProfile = pom.profileList.get(profile);
+		BuildProfile buildProfile = pom.getProfileByName(profile);
 		BuildModule buildModule = buildProfile.getModuleFromName(module);
 		buildProfile.scrubModule(buildModule, resume);
 		//Set<String>stringSet = pom.profileList.keySet();
