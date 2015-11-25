@@ -23,21 +23,27 @@ public class OptionsPanel extends JPanel {
 	public static final JCheckBox CHECKBOX_QUIET = new JCheckBox("Quiet", false);
 	public static final JCheckBox CHECKBOX_VERBOSE = new JCheckBox("Verbose", false);
 	public static final JCheckBox CHECKBOX_OFFLINE = new JCheckBox("Offline", false);
+	public static final JCheckBox CHECKBOX_FORCE = new JCheckBox("Force", false);
 	public static final JButton BUTTON_ABORT = new JButton("Abort");
 	public static final JButton BUTTON_CLEAR = new JButton("Clear");
 	public static boolean building = false;
 
 	public OptionsPanel() {
 		super();
+		CHECKBOX_FORCE.setToolTipText("Force updates of all dependencies");
+		CHECKBOX_OFFLINE.setToolTipText("Do not contact external repositories");
+		CHECKBOX_VERBOSE.setToolTipText("Produce more verbose output for debugging purposes");
+		CHECKBOX_WRAP.setToolTipText("Wrap output text to eliminate horizontal scroll bar");
 		add(OptionsPanel.CHECKBOX_CLEAN);
 		add(OptionsPanel.CHECKBOX_RESUME);
 		add(OptionsPanel.CHECKBOX_SKIP_TESTS);
 		add(OptionsPanel.CHECKBOX_VERBOSE);
 		add(OptionsPanel.CHECKBOX_QUIET);
 		add(OptionsPanel.CHECKBOX_OFFLINE);
+		add(OptionsPanel.CHECKBOX_FORCE);
+		add(OptionsPanel.CHECKBOX_WRAP);
 		add(OptionsPanel.BUTTON_ABORT);
 		add(OptionsPanel.BUTTON_CLEAR);
-		add(OptionsPanel.CHECKBOX_WRAP);
 //		LOG.info("Create button to kill thread");
 		
     	final ActionListener wwal = new ActionListener() {

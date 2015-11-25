@@ -33,7 +33,8 @@ public class LaunchBuildProcesses {
 		String extraOptions = skipTests ? " -DskipTests=true" : "";
 		extraOptions += OptionsPanel.CHECKBOX_QUIET.isSelected() ? " -q" : "";
 		extraOptions += OptionsPanel.CHECKBOX_VERBOSE.isSelected() ? " -X" : "";
-		extraOptions += OptionsPanel.CHECKBOX_OFFLINE.isSelected() ? " -o" : "";		
+		extraOptions += OptionsPanel.CHECKBOX_OFFLINE.isSelected() ? " -o" : "";	
+		extraOptions += OptionsPanel.CHECKBOX_FORCE.isSelected() ? " -U" : "";	
 		String actualAction = (clean ? "clean " : "") + buildStage.getAction();
 		String path = PreferencesPanel.pathToMaven.getText();
 		String execString = path + " " + actualAction + " -f " + pathToMainPOMFile + extraOptions + profileSwitch + moduleOption+" "+module;
