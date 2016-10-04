@@ -16,7 +16,7 @@ public class TestCommand implements Closeable {
 	private boolean keyPressRegularly = true;
 	private volatile boolean killed = false;
 	private volatile boolean sayHi = false;
-	
+
 	Process process = null;
 
 	static final Logger LOG = LoggerFactory.getLogger(TestCommand.class);
@@ -28,11 +28,10 @@ public class TestCommand implements Closeable {
 		return testCommand(processor, event, commands);
 	}
 
-	public ArrayList<String> testCommand(final LineProcessor processor, final SimpleEvent event, final String... commands) {
+	public ArrayList<String> testCommand(final LineProcessor processor, final SimpleEvent event,
+			final String... commands) {
 		final ArrayList<String> resultsList = null;
-		StreamGobbler outputGobbler = null;
-		StreamGobbler errorGobbler = null;
-		//OutputStream keycommands = null;
+		// OutputStream keycommands = null;
 		// final long t1 = System.currentTimeMillis();
 		// final StringBuilder sb = new StringBuilder("");
 		try {
@@ -51,71 +50,67 @@ public class TestCommand implements Closeable {
 			// get its output (your input) stream
 
 			// any error message?
-			errorGobbler = new StreamGobbler(this.process.getErrorStream(), processor, "ERROR");
+			try (StreamGobbler errorGobbler = new StreamGobbler(this.process.getErrorStream(), processor, "ERROR")) {
 
-			// any output?
-			outputGobbler = new StreamGobbler(this.process.getInputStream(), processor, "OUTPUT");
+				// any output?
+				try (StreamGobbler outputGobbler = new StreamGobbler(this.process.getInputStream(), processor,
+						"OUTPUT")) {
 
-			try (OutputStream keycommands = this.process.getOutputStream()) {
-	
-				// kick them off
-				errorGobbler.start();
-				outputGobbler.start();
-	
-				final long now = System.currentTimeMillis();
-				final long timeoutInMillis = 1000L * timeoutInSeconds;
-				final long finish = now + timeoutInMillis;
-				do {
-					try {
-						if (this.keyPressRegularly) {
-							keycommands.write(32); // press space?
-							keycommands.flush();
-							// System.out.println("space pressed!");
+					try (OutputStream keycommands = this.process.getOutputStream()) {
+
+						// kick them off
+						errorGobbler.start();
+						outputGobbler.start();
+
+						final long now = System.currentTimeMillis();
+						final long timeoutInMillis = 1000L * timeoutInSeconds;
+						final long finish = now + timeoutInMillis;
+						do {
+							try {
+								if (this.keyPressRegularly) {
+									keycommands.write(32); // press space?
+									keycommands.flush();
+									// System.out.println("space pressed!");
+								}
+							} catch (final Throwable e) {
+								this.logger.log("Error: " + e.toString());
+							}
+
+							if (this.sayHi) {
+								// this.sayHi = false;
+								this.logger.log("Thread says HI in loop");
+								this.logger.log("this.killed: " + this.killed);
+								this.logger.log("this.isAlive(proc): " + isAlive(this.process));
+								this.logger.log("this.hasTimedOut(finish): " + hasTimedOut(finish));
+							}
+
+							Thread.sleep(threadSleepDelay);
+						} while (isAlive(this.process) && !hasTimedOut(finish) && !this.killed);
+
+						this.logger.log("Exit of this process here");
+
+						if (this.killed) {
+							// LOG.info("Call to proc.destroy");
+							this.process.destroy();
+							Thread.sleep(400);
 						}
-					} catch (final Throwable e) {
-						this.logger.log("Error: " + e.toString());
-					}
-	
-					if (this.sayHi) {
-						// this.sayHi = false;
-						this.logger.log("Thread says HI in loop");
-						this.logger.log("this.killed: " + this.killed);
-						this.logger.log("this.isAlive(proc): " + isAlive(this.process));
-						this.logger.log("this.hasTimedOut(finish): " + hasTimedOut(finish));
-					}
-	
-					Thread.sleep(threadSleepDelay);
-				} while (isAlive(this.process) && !hasTimedOut(finish) && !this.killed);
-	
-				this.logger.log("Exit of this process here");
-	
-				if (this.killed) {
-					// LOG.info("Call to proc.destroy");
-					this.process.destroy();
-					Thread.sleep(400);
-				}
-	
-				if (isAlive(this.process)) {
-					if (!this.killed) {
-						final String message = "Process timeout out after " + timeoutInSeconds
-								+ " seconds";
-						this.logger.log(message);
-						processor.exit();
-						throw new InterruptedException(message);
+
+						if (isAlive(this.process)) {
+							if (!this.killed) {
+								final String message = "Process timeout out after " + timeoutInSeconds + " seconds";
+								this.logger.log(message);
+								processor.exit();
+								throw new InterruptedException(message);
+							}
+						}
+						return resultsList;
 					}
 				}
-				return resultsList;
 			}
 		} catch (final Throwable t) {
 			this.logger.log("Exit of this process was caused by the error: " + t.toString());
 			LOG.info("Exit of this process was caused by the error: ", t);
 		} finally {
-			if (errorGobbler != null) {
-				errorGobbler.close();
-			}
-			if (outputGobbler != null) {
-				outputGobbler.close();
-			}
 			event.simpleEvent();
 		}
 
@@ -173,7 +168,7 @@ public class TestCommand implements Closeable {
 	public void setLogger(LineProcessorLogger logger) {
 		this.logger = logger;
 	}
-	
+
 	@Override
 	public void close() {
 		this.process.destroy();
